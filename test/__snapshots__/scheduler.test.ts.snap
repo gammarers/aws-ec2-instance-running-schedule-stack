@@ -1,0 +1,263 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Ec2InstanceRunningScheduler Type=Cluster Testing default schedule Should match snapshot: default 1`] = `
+Object {
+  "Parameters": Object {
+    "BootstrapVersion": Object {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": Object {
+    "Ec2InstanceRunningSchedulerSchedulerExecutionRole16E4E2DD": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "scheduler.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Policies": Array [
+          Object {
+            "PolicyDocument": Object {
+              "Statement": Array [
+                Object {
+                  "Action": Array [
+                    "ec2:StartInstances",
+                    "ec2:StopInstances",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": "arn:aws:ec2:*:123456789012:instance:*",
+                },
+              ],
+              "Version": "2012-10-17",
+            },
+            "PolicyName": "ec2-instance-stop-policy",
+          },
+        ],
+        "RoleName": "stop-ec2-instance-schedule-f180f971-exec-role",
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "Ec2InstanceRunningSchedulerStartSchedule1FDB0719F41BCB51": Object {
+      "Properties": Object {
+        "Description": "auto start ec2 instance(i-0af01c0123456789a,i-0af01c0123456789b) schedule.",
+        "FlexibleTimeWindow": Object {
+          "Mode": "OFF",
+        },
+        "Name": "auto-start-ec2-instance-1fdb0719-schedule",
+        "ScheduleExpression": "cron(50 7 ? * MON-FRI *)",
+        "ScheduleExpressionTimezone": "UTC",
+        "State": "ENABLED",
+        "Target": Object {
+          "Arn": "arn:aws:scheduler:::aws-sdk:ec2:startInstances",
+          "Input": "{\\"InstanceIds\\":[\\"i-0af01c0123456789a\\",\\"i-0af01c0123456789b\\"]}",
+          "RetryPolicy": Object {
+            "MaximumEventAgeInSeconds": 60,
+            "MaximumRetryAttempts": 0,
+          },
+          "RoleArn": Object {
+            "Fn::GetAtt": Array [
+              "Ec2InstanceRunningSchedulerSchedulerExecutionRole16E4E2DD",
+              "Arn",
+            ],
+          },
+        },
+      },
+      "Type": "AWS::Scheduler::Schedule",
+    },
+    "Ec2InstanceRunningSchedulerStopSchedule1FDB07199E70AFE7": Object {
+      "Properties": Object {
+        "Description": "auto stop ec2 instance (i-0af01c0123456789a,i-0af01c0123456789b) schedule.",
+        "FlexibleTimeWindow": Object {
+          "Mode": "OFF",
+        },
+        "Name": "auto-stop-ec2-instance-1fdb0719-schedule",
+        "ScheduleExpression": "cron(10 21 ? * MON-FRI *)",
+        "ScheduleExpressionTimezone": "UTC",
+        "State": "ENABLED",
+        "Target": Object {
+          "Arn": "arn:aws:scheduler:::aws-sdk:ec2:stopInstances",
+          "Input": "{\\"InstanceIds\\":[\\"i-0af01c0123456789a\\",\\"i-0af01c0123456789b\\"]}",
+          "RetryPolicy": Object {
+            "MaximumEventAgeInSeconds": 60,
+            "MaximumRetryAttempts": 0,
+          },
+          "RoleArn": Object {
+            "Fn::GetAtt": Array [
+              "Ec2InstanceRunningSchedulerSchedulerExecutionRole16E4E2DD",
+              "Arn",
+            ],
+          },
+        },
+      },
+      "Type": "AWS::Scheduler::Schedule",
+    },
+  },
+  "Rules": Object {
+    "CheckBootstrapVersion": Object {
+      "Assertions": Array [
+        Object {
+          "Assert": Object {
+            "Fn::Not": Array [
+              Object {
+                "Fn::Contains": Array [
+                  Array [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  Object {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`Ec2InstanceRunningScheduler Type=Cluster Testing specify schedule Should match snapshot: specify 1`] = `
+Object {
+  "Parameters": Object {
+    "BootstrapVersion": Object {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": Object {
+    "Ec2InstanceRunningSchedulerSchedulerExecutionRole16E4E2DD": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "scheduler.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Policies": Array [
+          Object {
+            "PolicyDocument": Object {
+              "Statement": Array [
+                Object {
+                  "Action": Array [
+                    "ec2:StartInstances",
+                    "ec2:StopInstances",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": "arn:aws:ec2:*:123456789012:instance:*",
+                },
+              ],
+              "Version": "2012-10-17",
+            },
+            "PolicyName": "ec2-instance-stop-policy",
+          },
+        ],
+        "RoleName": "stop-ec2-instance-schedule-f180f971-exec-role",
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "Ec2InstanceRunningSchedulerStartSchedule1FDB0719F41BCB51": Object {
+      "Properties": Object {
+        "Description": "auto start ec2 instance(i-0af01c0123456789a,i-0af01c0123456789b) schedule.",
+        "FlexibleTimeWindow": Object {
+          "Mode": "OFF",
+        },
+        "Name": "auto-start-ec2-instance-1fdb0719-schedule",
+        "ScheduleExpression": "cron(55 8 ? * MON-FRI *)",
+        "ScheduleExpressionTimezone": "Asia/Tokyo",
+        "State": "ENABLED",
+        "Target": Object {
+          "Arn": "arn:aws:scheduler:::aws-sdk:ec2:startInstances",
+          "Input": "{\\"InstanceIds\\":[\\"i-0af01c0123456789a\\",\\"i-0af01c0123456789b\\"]}",
+          "RetryPolicy": Object {
+            "MaximumEventAgeInSeconds": 60,
+            "MaximumRetryAttempts": 0,
+          },
+          "RoleArn": Object {
+            "Fn::GetAtt": Array [
+              "Ec2InstanceRunningSchedulerSchedulerExecutionRole16E4E2DD",
+              "Arn",
+            ],
+          },
+        },
+      },
+      "Type": "AWS::Scheduler::Schedule",
+    },
+    "Ec2InstanceRunningSchedulerStopSchedule1FDB07199E70AFE7": Object {
+      "Properties": Object {
+        "Description": "auto stop ec2 instance (i-0af01c0123456789a,i-0af01c0123456789b) schedule.",
+        "FlexibleTimeWindow": Object {
+          "Mode": "OFF",
+        },
+        "Name": "auto-stop-ec2-instance-1fdb0719-schedule",
+        "ScheduleExpression": "cron(5 19 ? * MON-FRI *)",
+        "ScheduleExpressionTimezone": "Asia/Tokyo",
+        "State": "ENABLED",
+        "Target": Object {
+          "Arn": "arn:aws:scheduler:::aws-sdk:ec2:stopInstances",
+          "Input": "{\\"InstanceIds\\":[\\"i-0af01c0123456789a\\",\\"i-0af01c0123456789b\\"]}",
+          "RetryPolicy": Object {
+            "MaximumEventAgeInSeconds": 60,
+            "MaximumRetryAttempts": 0,
+          },
+          "RoleArn": Object {
+            "Fn::GetAtt": Array [
+              "Ec2InstanceRunningSchedulerSchedulerExecutionRole16E4E2DD",
+              "Arn",
+            ],
+          },
+        },
+      },
+      "Type": "AWS::Scheduler::Schedule",
+    },
+  },
+  "Rules": Object {
+    "CheckBootstrapVersion": Object {
+      "Assertions": Array [
+        Object {
+          "Assert": Object {
+            "Fn::Not": Array [
+              Object {
+                "Fn::Contains": Array [
+                  Array [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  Object {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;

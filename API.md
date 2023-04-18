@@ -74,14 +74,14 @@ This project is licensed under the Apache-2.0 License.
 ```typescript
 import { Ec2InstanceRunningScheduler } from '@yicr/aws-ec2-instance-running-scheduler'
 
-new Ec2InstanceRunningScheduler(scope: Construct, id: string, props: RdsDatabaseRunningSchedulerProps)
+new Ec2InstanceRunningScheduler(scope: Construct, id: string, props: Ec2InstanceRunningSchedulerProps)
 ```
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@yicr/aws-ec2-instance-running-scheduler.Ec2InstanceRunningScheduler.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
 | <code><a href="#@yicr/aws-ec2-instance-running-scheduler.Ec2InstanceRunningScheduler.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@yicr/aws-ec2-instance-running-scheduler.Ec2InstanceRunningScheduler.Initializer.parameter.props">props</a></code> | <code><a href="#@yicr/aws-ec2-instance-running-scheduler.RdsDatabaseRunningSchedulerProps">RdsDatabaseRunningSchedulerProps</a></code> | *No description.* |
+| <code><a href="#@yicr/aws-ec2-instance-running-scheduler.Ec2InstanceRunningScheduler.Initializer.parameter.props">props</a></code> | <code><a href="#@yicr/aws-ec2-instance-running-scheduler.Ec2InstanceRunningSchedulerProps">Ec2InstanceRunningSchedulerProps</a></code> | *No description.* |
 
 ---
 
@@ -99,7 +99,7 @@ new Ec2InstanceRunningScheduler(scope: Construct, id: string, props: RdsDatabase
 
 ##### `props`<sup>Required</sup> <a name="props" id="@yicr/aws-ec2-instance-running-scheduler.Ec2InstanceRunningScheduler.Initializer.parameter.props"></a>
 
-- *Type:* <a href="#@yicr/aws-ec2-instance-running-scheduler.RdsDatabaseRunningSchedulerProps">RdsDatabaseRunningSchedulerProps</a>
+- *Type:* <a href="#@yicr/aws-ec2-instance-running-scheduler.Ec2InstanceRunningSchedulerProps">Ec2InstanceRunningSchedulerProps</a>
 
 ---
 
@@ -168,25 +168,25 @@ The tree node.
 
 ## Structs <a name="Structs" id="Structs"></a>
 
-### RdsDatabaseRunningSchedulerProps <a name="RdsDatabaseRunningSchedulerProps" id="@yicr/aws-ec2-instance-running-scheduler.RdsDatabaseRunningSchedulerProps"></a>
+### Ec2InstanceRunningSchedulerProps <a name="Ec2InstanceRunningSchedulerProps" id="@yicr/aws-ec2-instance-running-scheduler.Ec2InstanceRunningSchedulerProps"></a>
 
-#### Initializer <a name="Initializer" id="@yicr/aws-ec2-instance-running-scheduler.RdsDatabaseRunningSchedulerProps.Initializer"></a>
+#### Initializer <a name="Initializer" id="@yicr/aws-ec2-instance-running-scheduler.Ec2InstanceRunningSchedulerProps.Initializer"></a>
 
 ```typescript
-import { RdsDatabaseRunningSchedulerProps } from '@yicr/aws-ec2-instance-running-scheduler'
+import { Ec2InstanceRunningSchedulerProps } from '@yicr/aws-ec2-instance-running-scheduler'
 
-const rdsDatabaseRunningSchedulerProps: RdsDatabaseRunningSchedulerProps = { ... }
+const ec2InstanceRunningSchedulerProps: Ec2InstanceRunningSchedulerProps = { ... }
 ```
 
 #### Properties <a name="Properties" id="Properties"></a>
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@yicr/aws-ec2-instance-running-scheduler.RdsDatabaseRunningSchedulerProps.property.targets">targets</a></code> | <code><a href="#@yicr/aws-ec2-instance-running-scheduler.TargetsProperty">TargetsProperty</a>[]</code> | *No description.* |
+| <code><a href="#@yicr/aws-ec2-instance-running-scheduler.Ec2InstanceRunningSchedulerProps.property.targets">targets</a></code> | <code><a href="#@yicr/aws-ec2-instance-running-scheduler.TargetsProperty">TargetsProperty</a>[]</code> | *No description.* |
 
 ---
 
-##### `targets`<sup>Required</sup> <a name="targets" id="@yicr/aws-ec2-instance-running-scheduler.RdsDatabaseRunningSchedulerProps.property.targets"></a>
+##### `targets`<sup>Required</sup> <a name="targets" id="@yicr/aws-ec2-instance-running-scheduler.Ec2InstanceRunningSchedulerProps.property.targets"></a>
 
 ```typescript
 public readonly targets: TargetsProperty[];

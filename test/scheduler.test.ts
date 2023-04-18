@@ -57,7 +57,7 @@ describe('Ec2InstanceRunningScheduler Type=Cluster Testing', () => {
                     'ec2:StartInstances',
                     'ec2:StopInstances',
                   ]),
-                  Resource: 'arn:aws:ec2:*:123456789012:instance:*',
+                  Resource: 'arn:aws:ec2:*:123456789012:instance/*',
                 }),
               ],
             }),

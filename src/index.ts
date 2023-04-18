@@ -17,12 +17,12 @@ export interface TargetsProperty {
   readonly startSchedule: ScheduleProperty;
 }
 
-export interface RdsDatabaseRunningSchedulerProps {
+export interface Ec2InstanceRunningSchedulerProps {
   readonly targets: TargetsProperty[];
 }
 
 export class Ec2InstanceRunningScheduler extends Construct {
-  constructor(scope: Construct, id: string, props: RdsDatabaseRunningSchedulerProps) {
+  constructor(scope: Construct, id: string, props: Ec2InstanceRunningSchedulerProps) {
     super(scope, id);
 
     const account = cdk.Stack.of(this).account;

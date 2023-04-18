@@ -47,7 +47,7 @@ export class Ec2InstanceRunningScheduler extends Construct {
                 'ec2:StopInstances',
               ],
               resources: [
-                `arn:aws:ec2:*:${account}:instance:*`,
+                `arn:aws:ec2:*:${account}:instance/*`,
               ],
             }),
           ],

@@ -32,7 +32,7 @@ npm install @yicr/aws-ec2-instance-running-scheduler
 ```
 
 ```typescript
-import { RdsDatabaseRunningScheduler, Type } from '@yicr/aws-ec2-instance-running-scheduler';
+import { Ec2InstanceRunningScheduler } from '@yicr/aws-ec2-instance-running-scheduler';
 
 new Ec2InstanceRunningScheduler(stack, 'Ec2InstanceRunningScheduler', {
   targets: [

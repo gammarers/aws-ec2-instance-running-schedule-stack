@@ -23,5 +23,9 @@ const project = new awscdk.AwsCdkConstructLibrary({
     secret: 'GITHUB_TOKEN',
     allowedUsernames: ['yicr'],
   },
+  publishToPypi: {
+    distName: 'aws-ec2-instance-running-scheduler',
+    module: 'aws_ec2_instance_running_scheduler',
+  },
 });
 project.synth();

@@ -18,17 +18,15 @@ This construct creating resource list.
 ### TypeScript
 
 ```shell
-npm install aws-ec2-instance-running-scheduler
-```
-or
-```shell
-yarn add aws-ec2-instance-running-scheduler
+npm install @gammarer/aws-ec2-instance-running-scheduler
+# or
+yarn add @gammarer/aws-ec2-instance-running-scheduler
 ```
 
 ### Python
 
 ```shell
-pip install aws-ec2-instance-running-scheduler
+pip install gammarer.aws-ec2-instance-running-scheduler
 ```
 
 ## Example
@@ -38,7 +36,7 @@ npm install aws-ec2-instance-running-scheduler
 ```
 
 ```typescript
-import { Ec2InstanceRunningScheduler } from 'aws-ec2-instance-running-scheduler';
+import { Ec2InstanceRunningScheduler } from '@gammarer/aws-ec2-instance-running-scheduler';
 
 new Ec2InstanceRunningScheduler(stack, 'Ec2InstanceRunningScheduler', {
   targets: [

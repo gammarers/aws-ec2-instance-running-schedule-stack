@@ -4,7 +4,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   authorAddress: 'yicr@users.noreply.github.com',
   cdkVersion: '2.62.0',
   defaultReleaseBranch: 'main',
-  name: 'aws-ec2-instance-running-scheduler',
+  name: '@gammarer/aws-ec2-instance-running-scheduler',
   description: 'AWS EC2 Instance Running Scheduler',
   keywords: ['aws', 'cdk', 'aws-cdk', 'auto', 'running', 'scheduler', 'ec2', 'instance'],
   projenrcTs: true,
@@ -24,8 +24,8 @@ const project = new awscdk.AwsCdkConstructLibrary({
     allowedUsernames: ['yicr'],
   },
   publishToPypi: {
-    distName: 'aws-ec2-instance-running-scheduler',
-    module: 'aws_ec2_instance_running_scheduler',
+    distName: 'gammarer.aws-ec2-instance-running-scheduler',
+    module: 'gammarer.aws_ec2_instance_running_scheduler',
   },
 });
 project.synth();

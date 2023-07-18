@@ -32,7 +32,7 @@ pip install gammarer.aws-ec2-instance-running-scheduler
 ## Example
 
 ```shell
-npm install aws-ec2-instance-running-scheduler
+npm install @gammarer/aws-ec2-instance-running-scheduler
 ```
 
 ```typescript

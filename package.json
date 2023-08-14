@@ -134,7 +134,7 @@
     "outdir": "dist",
     "targets": {
       "java": {
-        "package": "com.gammarer.cdk.aws.ec2-instance-running-scheduler",
+        "package": "com.gammarer.cdk.aws.ec2_instance_running_scheduler",
         "maven": {
           "groupId": "com.gammarer",
           "artifactId": "aws-ec2-instance-running-scheduler"

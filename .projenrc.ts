@@ -27,5 +27,11 @@ const project = new awscdk.AwsCdkConstructLibrary({
     distName: 'gammarer.aws-ec2-instance-running-scheduler',
     module: 'gammarer.aws_ec2_instance_running_scheduler',
   },
+  publishToMaven: {
+    mavenGroupId: 'com.gammarer',
+    javaPackage: 'com.gammarer.cdk.aws.ec2_instance_running_scheduler',
+    mavenArtifactId: 'aws-ec2-instance-running-scheduler',
+    mavenEndpoint: 'https://s01.oss.sonatype.org',
+  },
 });
 project.synth();

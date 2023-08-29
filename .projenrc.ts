@@ -3,6 +3,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   author: 'yicr',
   authorAddress: 'yicr@users.noreply.github.com',
   cdkVersion: '2.80.0',
+  typescriptVersion: '4.9.x',
   defaultReleaseBranch: 'main',
   name: '@gammarer/aws-ec2-instance-running-scheduler',
   description: 'AWS EC2 Instance Running Scheduler',

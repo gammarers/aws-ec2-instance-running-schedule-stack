@@ -2,7 +2,9 @@ import { awscdk, javascript } from 'projen';
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'yicr',
   authorAddress: 'yicr@users.noreply.github.com',
-  cdkVersion: '2.62.0',
+  cdkVersion: '2.80.0',
+  typescriptVersion: '4.9.x',
+  jsiiVersion: '~5.0.0',
   defaultReleaseBranch: 'main',
   name: '@gammarer/aws-ec2-instance-running-scheduler',
   description: 'AWS EC2 Instance Running Scheduler',
@@ -11,12 +13,12 @@ const project = new awscdk.AwsCdkConstructLibrary({
   repositoryUrl: 'https://github.com/yicr/aws-ec2-instance-running-scheduler.git',
   releaseToNpm: true,
   npmAccess: javascript.NpmAccess.PUBLIC,
-  minNodeVersion: '16.0.0',
-  workflowNodeVersion: '16.19.1',
+  minNodeVersion: '18.0.0',
+  workflowNodeVersion: '18.17.1',
   depsUpgradeOptions: {
     workflowOptions: {
       labels: ['auto-approve', 'auto-merge'],
-      schedule: javascript.UpgradeDependenciesSchedule.expressions(['0 19 * * *']),
+      schedule: javascript.UpgradeDependenciesSchedule.expressions(['0 16 * * 3']), // every wednesday 16:00 (JST/THU:0100)
     },
   },
   autoApproveOptions: {

@@ -3,7 +3,7 @@
   "description": "AWS EC2 Instance Running Scheduler",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yicr/aws-ec2-instance-running-scheduler.git"
+    "url": "https://github.com/gammarer/aws-ec2-instance-running-scheduler.git"
   },
   "scripts": {
     "build": "npx projen build",

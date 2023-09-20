@@ -10,7 +10,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   description: 'AWS EC2 Instance Running Scheduler',
   keywords: ['aws', 'cdk', 'aws-cdk', 'auto', 'running', 'scheduler', 'ec2', 'instance'],
   projenrcTs: true,
-  repositoryUrl: 'https://github.com/yicr/aws-ec2-instance-running-scheduler.git',
+  repositoryUrl: 'https://github.com/gammarer/aws-ec2-instance-running-scheduler.git',
   releaseToNpm: true,
   npmAccess: javascript.NpmAccess.PUBLIC,
   minNodeVersion: '18.0.0',

@@ -3,7 +3,7 @@
   "description": "AWS EC2 Instance Running Scheduler",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yicr/aws-ec2-instance-running-scheduler.git"
+    "url": "https://github.com/gammarer/aws-ec2-instance-running-scheduler.git"
   },
   "scripts": {
     "build": "npx projen build",
@@ -17,6 +17,7 @@
     "eslint": "npx projen eslint",
     "package": "npx projen package",
     "package-all": "npx projen package-all",
+    "package:dotnet": "npx projen package:dotnet",
     "package:java": "npx projen package:java",
     "package:js": "npx projen package:js",
     "package:python": "npx projen package:python",
@@ -34,11 +35,11 @@
   "author": {
     "name": "yicr",
     "email": "yicr@users.noreply.github.com",
-    "organization": false
+    "organization": true
   },
   "devDependencies": {
     "@types/jest": "^27",
-    "@types/node": "^18",
+    "@types/node": "^16",
     "@typescript-eslint/eslint-plugin": "^6",
     "@typescript-eslint/parser": "^6",
     "aws-cdk-lib": "2.80.0",
@@ -76,7 +77,7 @@
     "scheduler"
   ],
   "engines": {
-    "node": ">= 18.0.0"
+    "node": ">= 16.0.0"
   },
   "main": "lib/index.js",
   "license": "Apache-2.0",
@@ -139,6 +140,10 @@
       "python": {
         "distName": "gammarer.aws-ec2-instance-running-scheduler",
         "module": "gammarer.aws_ec2_instance_running_scheduler"
+      },
+      "dotnet": {
+        "namespace": "Gammarer.CDK.AWS",
+        "packageId": "Gammarer.CDK.AWS.Ec2InstanceRunningScheduler"
       }
     },
     "tsc": {

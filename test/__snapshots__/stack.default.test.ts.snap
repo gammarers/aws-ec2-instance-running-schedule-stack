@@ -1,0 +1,343 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Ec2InstanceRunningScheduleStack default Testing Should match snapshot: default 1`] = `
+{
+  "Mappings": {
+    "ServiceprincipalMap": {
+      "af-south-1": {
+        "states": "states.af-south-1.amazonaws.com",
+      },
+      "ap-east-1": {
+        "states": "states.ap-east-1.amazonaws.com",
+      },
+      "ap-northeast-1": {
+        "states": "states.ap-northeast-1.amazonaws.com",
+      },
+      "ap-northeast-2": {
+        "states": "states.ap-northeast-2.amazonaws.com",
+      },
+      "ap-northeast-3": {
+        "states": "states.ap-northeast-3.amazonaws.com",
+      },
+      "ap-south-1": {
+        "states": "states.ap-south-1.amazonaws.com",
+      },
+      "ap-south-2": {
+        "states": "states.ap-south-2.amazonaws.com",
+      },
+      "ap-southeast-1": {
+        "states": "states.ap-southeast-1.amazonaws.com",
+      },
+      "ap-southeast-2": {
+        "states": "states.ap-southeast-2.amazonaws.com",
+      },
+      "ap-southeast-3": {
+        "states": "states.ap-southeast-3.amazonaws.com",
+      },
+      "ap-southeast-4": {
+        "states": "states.ap-southeast-4.amazonaws.com",
+      },
+      "ca-central-1": {
+        "states": "states.ca-central-1.amazonaws.com",
+      },
+      "cn-north-1": {
+        "states": "states.cn-north-1.amazonaws.com",
+      },
+      "cn-northwest-1": {
+        "states": "states.cn-northwest-1.amazonaws.com",
+      },
+      "eu-central-1": {
+        "states": "states.eu-central-1.amazonaws.com",
+      },
+      "eu-central-2": {
+        "states": "states.eu-central-2.amazonaws.com",
+      },
+      "eu-north-1": {
+        "states": "states.eu-north-1.amazonaws.com",
+      },
+      "eu-south-1": {
+        "states": "states.eu-south-1.amazonaws.com",
+      },
+      "eu-south-2": {
+        "states": "states.eu-south-2.amazonaws.com",
+      },
+      "eu-west-1": {
+        "states": "states.eu-west-1.amazonaws.com",
+      },
+      "eu-west-2": {
+        "states": "states.eu-west-2.amazonaws.com",
+      },
+      "eu-west-3": {
+        "states": "states.eu-west-3.amazonaws.com",
+      },
+      "il-central-1": {
+        "states": "states.il-central-1.amazonaws.com",
+      },
+      "me-central-1": {
+        "states": "states.me-central-1.amazonaws.com",
+      },
+      "me-south-1": {
+        "states": "states.me-south-1.amazonaws.com",
+      },
+      "sa-east-1": {
+        "states": "states.sa-east-1.amazonaws.com",
+      },
+      "us-east-1": {
+        "states": "states.us-east-1.amazonaws.com",
+      },
+      "us-east-2": {
+        "states": "states.us-east-2.amazonaws.com",
+      },
+      "us-gov-east-1": {
+        "states": "states.us-gov-east-1.amazonaws.com",
+      },
+      "us-gov-west-1": {
+        "states": "states.us-gov-west-1.amazonaws.com",
+      },
+      "us-iso-east-1": {
+        "states": "states.amazonaws.com",
+      },
+      "us-iso-west-1": {
+        "states": "states.amazonaws.com",
+      },
+      "us-isob-east-1": {
+        "states": "states.amazonaws.com",
+      },
+      "us-west-1": {
+        "states": "states.us-west-1.amazonaws.com",
+      },
+      "us-west-2": {
+        "states": "states.us-west-2.amazonaws.com",
+      },
+    },
+  },
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": {
+    "SchedulerExecutionRole0AF092B7": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "scheduler.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "Policies": [
+          {
+            "PolicyDocument": {
+              "Statement": [
+                {
+                  "Action": "states:StartExecution",
+                  "Effect": "Allow",
+                  "Resource": {
+                    "Ref": "StateMachine2E01A3A5",
+                  },
+                },
+              ],
+              "Version": "2012-10-17",
+            },
+            "PolicyName": "state-machine-exec-policy",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "StartDatabaseRunningSchedule": {
+      "Properties": {
+        "Description": "start db instance schedule.",
+        "FlexibleTimeWindow": {
+          "Mode": "OFF",
+        },
+        "ScheduleExpression": "cron(50 7 ? * MON-FRI *)",
+        "ScheduleExpressionTimezone": "UTC",
+        "State": "ENABLED",
+        "Target": {
+          "Arn": {
+            "Ref": "StateMachine2E01A3A5",
+          },
+          "Input": "{"Params":{"TagKey":"WorkHoursRunning","TagValues":["YES"],"Mode":"Start"}}",
+          "RetryPolicy": {
+            "MaximumEventAgeInSeconds": 60,
+            "MaximumRetryAttempts": 0,
+          },
+          "RoleArn": {
+            "Fn::GetAtt": [
+              "SchedulerExecutionRole0AF092B7",
+              "Arn",
+            ],
+          },
+        },
+      },
+      "Type": "AWS::Scheduler::Schedule",
+    },
+    "StateMachine2E01A3A5": {
+      "DeletionPolicy": "Delete",
+      "DependsOn": [
+        "StateMachineRoleDefaultPolicyDF1E6607",
+        "StateMachineRoleB840431D",
+      ],
+      "Properties": {
+        "DefinitionString": {
+          "Fn::Join": [
+            "",
+            [
+              "{"StartAt":"GetTargetResources","States":{"GetTargetResources":{"Next":"CalculateArrayLength","Type":"Task","ResultPath":"$.Result","ResultSelector":{"TargetResources.$":"$..ResourceTagMappingList[*].ResourceARN"},"Resource":"arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::aws-sdk:resourcegroupstaggingapi:getResources","Parameters":{"ResourceTypeFilters":["ec2:instance"],"TagFilters":[{"Key.$":"$.Params.TagKey","Values.$":"$.Params.TagValues"}]}},"CalculateArrayLength":{"Type":"Pass","ResultPath":"$.TargetResourceLength","Parameters":{"Length.$":"States.ArrayLength($.Result.TargetResources)"},"Next":"TargetResourcesExistCheck"},"TargetResourcesExistCheck":{"Type":"Choice","Choices":[{"Variable":"$.TargetResourceLength.Length","NumericGreaterThan":0,"Next":"ResourceProcessingMap"}],"Default":"TargetResourcesNotFound"},"TargetResourcesNotFound":{"Type":"Pass","Next":"Succeed"},"Succeed":{"Type":"Succeed"},"ResourceProcessingMap":{"Type":"Map","End":true,"Parameters":{"TargetResource.$":"$$.Map.Item.Value","params.$":"$.Params","definition.$":"$.definition"},"ItemsPath":"$.Result.TargetResources","ItemProcessor":{"ProcessorConfig":{"Mode":"INLINE"},"StartAt":"GetIdentifier","States":{"GetIdentifier":{"Type":"Pass","ResultPath":"$.Result.target","Parameters":{"identifier.$":"States.ArrayGetItem(States.StringSplit($.TargetResource, ':'), 6)"},"Next":"StatusChoice"},"StatusChoice":{"Type":"Choice","Choices":[{"And":[{"Variable":"$.Params.Mode","StringEquals":"Start"},{"Variable":"$.Result.status.current","StringEquals":"Stopped"}],"Next":"StartInstance"},{"And":[{"Variable":"$.Params.Mode","StringEquals":"Stop"},{"Variable":"$.Result.status.current","StringEquals":"Running"}],"Next":"StopInstance"},{"Or":[{"And":[{"Variable":"$.Params.Mode","StringEquals":"Start"},{"Variable":"$.Result.status.current","StringEquals":"Running"}]},{"And":[{"Variable":"$.Params.Mode","StringEquals":"Stop"},{"Variable":"$.Result.status.current","StringEquals":"Stopped"}]}],"Next":"InstanceStatusChangeSucceed"},{"Or":[{"And":[{"And":[{"Variable":"$.Params.Mode","StringEquals":"Start"},{"Or":[{"Variable":"$.Result.status.current","StringEquals":"pending"}]}]}]},{"And":[{"And":[{"Variable":"$.Params.Mode","StringEquals":"Stop"},{"Or":[{"Variable":"$.Result.status.current","StringEquals":"stopping"},{"Variable":"$.Result.status.current","StringEquals":"shutting-down"}]}]}]}],"Next":"StatusChangeWait"}],"Default":"StatusFail"},"StatusFail":{"Type":"Fail","Cause":"instance status fail."},"StartInstance":{"Next":"StatusChangeWait","Type":"Task","ResultPath":"$.Result","ResultSelector":{"CurrentState.$":"$.StartingInstances[0].CurrentState.Name"},"Resource":"arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::aws-sdk:ec2:startInstances","Parameters":{"InstanceIds.$":"$.Result.TargetInstanceId"}},"StatusChangeWait":{"Type":"Wait","Seconds":20,"Next":"DescribeInstanceStatus"},"StopInstance":{"Next":"StatusChangeWait","Type":"Task","ResultPath":"$.Result","ResultSelector":{"CurrentState.$":"$.StoppingInstances[0].CurrentState.Name"},"Resource":"arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::aws-sdk:ec2:stopInstances","Parameters":{"InstanceIds.$":"$.Result.TargetInstanceId"}},"DescribeInstanceStatus":{"End":true,"Type":"Task","ResultPath":"$.Result","ResultSelector":{"TargetInstanceId.$":"$.InstanceStatuses[0].InstanceState.Name"},"Resource":"arn:",
+              {
+                "Ref": "AWS::Partition",
+              },
+              ":states:::aws-sdk:ec2:describeInstanceStatus","Parameters":{"InstanceIds.$":"$.Result.TargetInstanceId"}},"InstanceStatusChangeSucceed":{"Type":"Succeed"}}},"MaxConcurrency":10}}}",
+            ],
+          ],
+        },
+        "RoleArn": {
+          "Fn::GetAtt": [
+            "StateMachineRoleB840431D",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::StepFunctions::StateMachine",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "StateMachineRoleB840431D": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": {
+                  "Fn::FindInMap": [
+                    "ServiceprincipalMap",
+                    {
+                      "Ref": "AWS::Region",
+                    },
+                    "states",
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "StateMachineRoleDefaultPolicyDF1E6607": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "tag:GetResources",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": "ec2:startInstances",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": "ec2:stopInstances",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": "ec2:describeInstanceStatus",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "StateMachineRoleDefaultPolicyDF1E6607",
+        "Roles": [
+          {
+            "Ref": "StateMachineRoleB840431D",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "StopDatabaseRunningSchedule": {
+      "Properties": {
+        "Description": "stop database(instance/cluster) running stop schedule.",
+        "FlexibleTimeWindow": {
+          "Mode": "OFF",
+        },
+        "ScheduleExpression": "cron(10 21 ? * MON-FRI *)",
+        "ScheduleExpressionTimezone": "UTC",
+        "State": "ENABLED",
+        "Target": {
+          "Arn": {
+            "Ref": "StateMachine2E01A3A5",
+          },
+          "Input": "{"Params":{"TagKey":"WorkHoursRunning","TagValues":["YES"],"Mode":"Stop"}}",
+          "RetryPolicy": {
+            "MaximumEventAgeInSeconds": 60,
+            "MaximumRetryAttempts": 0,
+          },
+          "RoleArn": {
+            "Fn::GetAtt": [
+              "SchedulerExecutionRole0AF092B7",
+              "Arn",
+            ],
+          },
+        },
+      },
+      "Type": "AWS::Scheduler::Schedule",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;

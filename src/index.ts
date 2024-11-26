@@ -70,7 +70,7 @@ export class EC2InstanceRunningScheduleStack extends Stack {
       service: 'ec2',
       action: 'stopInstances',
       parameters: {
-        'InstanceIds.$': '$.Result.TargetInstanceId',
+        InstanceIds: sfn.JsonPath.array(sfn.JsonPath.stringAt('$.Target.Identifier')),
       },
       resultPath: '$.Result',
       resultSelector: {
@@ -84,7 +84,7 @@ export class EC2InstanceRunningScheduleStack extends Stack {
       service: 'ec2',
       action: 'startInstances',
       parameters: {
-        'InstanceIds.$': '$.Result.TargetInstanceId',
+        InstanceIds: sfn.JsonPath.array(sfn.JsonPath.stringAt('$.Target.Identifier')),
       },
       resultPath: '$.Result',
       resultSelector: {
@@ -92,24 +92,24 @@ export class EC2InstanceRunningScheduleStack extends Stack {
       },
     });
 
-    // 👇 Describe instance Status
-    const describeInstanceStatus = new tasks.CallAwsService(this, 'DescribeInstanceStatus', {
+    // 👇 Describe instance
+    const describeInstance = new tasks.CallAwsService(this, 'DescribeInstance', {
       iamResources: ['*'],
       service: 'ec2',
-      action: 'describeInstanceStatus',
+      action: 'describeInstances',
       parameters: {
-        'InstanceIds.$': '$.Result.TargetInstanceId',
+        InstanceIds: sfn.JsonPath.array(sfn.JsonPath.stringAt('$.Target.Identifier')),
       },
       resultPath: '$.Result',
       resultSelector: {
-        'TargetInstanceId.$': '$.InstanceStatuses[0].InstanceState.Name',
+        'CurrentState.$': '$.Reservations[0].Instances[0].State.Name',
       },
     });
 
     const statusChangeWait = new sfn.Wait(this, 'StatusChangeWait', {
       time: sfn.WaitTime.duration(Duration.seconds(20)),
     });
-    statusChangeWait.next(describeInstanceStatus);
+    statusChangeWait.next(describeInstance);
 
     stopInstance.next(statusChangeWait);
     startInstance.next(statusChangeWait);
@@ -120,7 +120,7 @@ export class EC2InstanceRunningScheduleStack extends Stack {
       .when(
         sfn.Condition.and(
           sfn.Condition.stringEquals('$.Params.Mode', 'Start'),
-          sfn.Condition.stringEquals('$.Result.status.current', 'Stopped'),
+          sfn.Condition.stringEquals('$.Result.CurrentState', 'stopped'),
         ),
         startInstance,
       )
@@ -128,7 +128,7 @@ export class EC2InstanceRunningScheduleStack extends Stack {
       .when(
         sfn.Condition.and(
           sfn.Condition.stringEquals('$.Params.Mode', 'Stop'),
-          sfn.Condition.stringEquals('$.Result.status.current', 'Running'),
+          sfn.Condition.stringEquals('$.Result.CurrentState', 'running'),
         ),
         stopInstance,
       )
@@ -137,11 +137,11 @@ export class EC2InstanceRunningScheduleStack extends Stack {
         sfn.Condition.or(
           sfn.Condition.and(
             sfn.Condition.stringEquals('$.Params.Mode', 'Start'),
-            sfn.Condition.stringEquals('$.Result.status.current', 'Running'),
+            sfn.Condition.stringEquals('$.Result.CurrentState', 'running'),
           ),
           sfn.Condition.and(
             sfn.Condition.stringEquals('$.Params.Mode', 'Stop'),
-            sfn.Condition.stringEquals('$.Result.status.current', 'Stopped'),
+            sfn.Condition.stringEquals('$.Result.CurrentState', 'stopped'),
           ),
         ),
         new sfn.Succeed(this, 'InstanceStatusChangeSucceed'),
@@ -153,7 +153,7 @@ export class EC2InstanceRunningScheduleStack extends Stack {
             sfn.Condition.and(
               sfn.Condition.stringEquals('$.Params.Mode', 'Start'),
               sfn.Condition.or(
-                sfn.Condition.stringEquals('$.Result.status.current', 'pending'),
+                sfn.Condition.stringEquals('$.Result.CurrentState', 'pending'),
               ),
             ),
           ),
@@ -161,8 +161,8 @@ export class EC2InstanceRunningScheduleStack extends Stack {
             sfn.Condition.and(
               sfn.Condition.stringEquals('$.Params.Mode', 'Stop'),
               sfn.Condition.or(
-                sfn.Condition.stringEquals('$.Result.status.current', 'stopping'),
-                sfn.Condition.stringEquals('$.Result.status.current', 'shutting-down'),
+                sfn.Condition.stringEquals('$.Result.CurrentState', 'stopping'),
+                sfn.Condition.stringEquals('$.Result.CurrentState', 'shutting-down'),
               ),
             ),
           ),
@@ -172,22 +172,24 @@ export class EC2InstanceRunningScheduleStack extends Stack {
       .otherwise(new sfn.Fail(this, 'StatusFail', {
         cause: 'instance status fail.',
       }));
+    describeInstance.next(describeTypeChoice);
 
     const resourceStatusChangingMap = new sfn.Map(this, 'ResourceProcessingMap', {
       itemsPath: sfn.JsonPath.stringAt('$.Result.TargetResources'),
       parameters: {
         TargetResource: sfn.JsonPath.stringAt('$$.Map.Item.Value'),
-        params: sfn.JsonPath.stringAt('$.Params'),
-        definition: sfn.JsonPath.stringAt('$.definition'),
+        Params: sfn.JsonPath.stringAt('$.Params'),
+        // definition: sfn.JsonPath.stringAt('$.definition'),
       },
       maxConcurrency: 10,
     }).itemProcessor(
       new sfn.Pass(this, 'GetIdentifier', {
-        resultPath: '$.Result.target',
+        resultPath: '$.Target',
         parameters: {
-          identifier: sfn.JsonPath.arrayGetItem(sfn.JsonPath.stringSplit(sfn.JsonPath.stringAt('$.TargetResource'), ':'), 6),
+          // arn:aws:ec2:ap-northeast-1:123456789012:instance/i-0000000000aaaaa
+          Identifier: sfn.JsonPath.arrayGetItem(sfn.JsonPath.stringSplit(sfn.JsonPath.stringAt('$.TargetResource'), '/'), 1),
         },
-      }).next(describeTypeChoice));
+      }).next(describeInstance));
 
     const targetResourcesNotFound = new sfn.Pass(this, 'TargetResourcesNotFound');
     targetResourcesNotFound.next(succeed);

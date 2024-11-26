@@ -196,19 +196,19 @@ exports[`Ec2InstanceRunningScheduleStack specific Testing Should match snapshot:
               {
                 "Ref": "AWS::Partition",
               },
-              ":states:::aws-sdk:resourcegroupstaggingapi:getResources","Parameters":{"ResourceTypeFilters":["ec2:instance"],"TagFilters":[{"Key.$":"$.Params.TagKey","Values.$":"$.Params.TagValues"}]}},"CalculateArrayLength":{"Type":"Pass","ResultPath":"$.TargetResourceLength","Parameters":{"Length.$":"States.ArrayLength($.Result.TargetResources)"},"Next":"TargetResourcesExistCheck"},"TargetResourcesExistCheck":{"Type":"Choice","Choices":[{"Variable":"$.TargetResourceLength.Length","NumericGreaterThan":0,"Next":"ResourceProcessingMap"}],"Default":"TargetResourcesNotFound"},"TargetResourcesNotFound":{"Type":"Pass","Next":"Succeed"},"Succeed":{"Type":"Succeed"},"ResourceProcessingMap":{"Type":"Map","End":true,"Parameters":{"TargetResource.$":"$$.Map.Item.Value","params.$":"$.Params","definition.$":"$.definition"},"ItemsPath":"$.Result.TargetResources","ItemProcessor":{"ProcessorConfig":{"Mode":"INLINE"},"StartAt":"GetIdentifier","States":{"GetIdentifier":{"Type":"Pass","ResultPath":"$.Result.target","Parameters":{"identifier.$":"States.ArrayGetItem(States.StringSplit($.TargetResource, ':'), 6)"},"Next":"StatusChoice"},"StatusChoice":{"Type":"Choice","Choices":[{"And":[{"Variable":"$.Params.Mode","StringEquals":"Start"},{"Variable":"$.Result.status.current","StringEquals":"Stopped"}],"Next":"StartInstance"},{"And":[{"Variable":"$.Params.Mode","StringEquals":"Stop"},{"Variable":"$.Result.status.current","StringEquals":"Running"}],"Next":"StopInstance"},{"Or":[{"And":[{"Variable":"$.Params.Mode","StringEquals":"Start"},{"Variable":"$.Result.status.current","StringEquals":"Running"}]},{"And":[{"Variable":"$.Params.Mode","StringEquals":"Stop"},{"Variable":"$.Result.status.current","StringEquals":"Stopped"}]}],"Next":"InstanceStatusChangeSucceed"},{"Or":[{"And":[{"And":[{"Variable":"$.Params.Mode","StringEquals":"Start"},{"Or":[{"Variable":"$.Result.status.current","StringEquals":"pending"}]}]}]},{"And":[{"And":[{"Variable":"$.Params.Mode","StringEquals":"Stop"},{"Or":[{"Variable":"$.Result.status.current","StringEquals":"stopping"},{"Variable":"$.Result.status.current","StringEquals":"shutting-down"}]}]}]}],"Next":"StatusChangeWait"}],"Default":"StatusFail"},"StatusFail":{"Type":"Fail","Cause":"instance status fail."},"StartInstance":{"Next":"StatusChangeWait","Type":"Task","ResultPath":"$.Result","ResultSelector":{"CurrentState.$":"$.StartingInstances[0].CurrentState.Name"},"Resource":"arn:",
+              ":states:::aws-sdk:resourcegroupstaggingapi:getResources","Parameters":{"ResourceTypeFilters":["ec2:instance"],"TagFilters":[{"Key.$":"$.Params.TagKey","Values.$":"$.Params.TagValues"}]}},"CalculateArrayLength":{"Type":"Pass","ResultPath":"$.TargetResourceLength","Parameters":{"Length.$":"States.ArrayLength($.Result.TargetResources)"},"Next":"TargetResourcesExistCheck"},"TargetResourcesExistCheck":{"Type":"Choice","Choices":[{"Variable":"$.TargetResourceLength.Length","NumericGreaterThan":0,"Next":"ResourceProcessingMap"}],"Default":"TargetResourcesNotFound"},"TargetResourcesNotFound":{"Type":"Pass","Next":"Succeed"},"Succeed":{"Type":"Succeed"},"ResourceProcessingMap":{"Type":"Map","End":true,"Parameters":{"TargetResource.$":"$$.Map.Item.Value","Params.$":"$.Params"},"ItemsPath":"$.Result.TargetResources","ItemProcessor":{"ProcessorConfig":{"Mode":"INLINE"},"StartAt":"GetIdentifier","States":{"GetIdentifier":{"Type":"Pass","ResultPath":"$.Target","Parameters":{"Identifier.$":"States.ArrayGetItem(States.StringSplit($.TargetResource, '/'), 1)"},"Next":"DescribeInstance"},"DescribeInstance":{"Next":"StatusChoice","Type":"Task","ResultPath":"$.Result","ResultSelector":{"CurrentState.$":"$.Reservations[0].Instances[0].State.Name"},"Resource":"arn:",
               {
                 "Ref": "AWS::Partition",
               },
-              ":states:::aws-sdk:ec2:startInstances","Parameters":{"InstanceIds.$":"$.Result.TargetInstanceId"}},"StatusChangeWait":{"Type":"Wait","Seconds":20,"Next":"DescribeInstanceStatus"},"StopInstance":{"Next":"StatusChangeWait","Type":"Task","ResultPath":"$.Result","ResultSelector":{"CurrentState.$":"$.StoppingInstances[0].CurrentState.Name"},"Resource":"arn:",
+              ":states:::aws-sdk:ec2:describeInstances","Parameters":{"InstanceIds.$":"States.Array($.Target.Identifier)"}},"StatusChangeWait":{"Type":"Wait","Seconds":20,"Next":"DescribeInstance"},"StopInstance":{"Next":"StatusChangeWait","Type":"Task","ResultPath":"$.Result","ResultSelector":{"CurrentState.$":"$.StoppingInstances[0].CurrentState.Name"},"Resource":"arn:",
               {
                 "Ref": "AWS::Partition",
               },
-              ":states:::aws-sdk:ec2:stopInstances","Parameters":{"InstanceIds.$":"$.Result.TargetInstanceId"}},"DescribeInstanceStatus":{"End":true,"Type":"Task","ResultPath":"$.Result","ResultSelector":{"TargetInstanceId.$":"$.InstanceStatuses[0].InstanceState.Name"},"Resource":"arn:",
+              ":states:::aws-sdk:ec2:stopInstances","Parameters":{"InstanceIds.$":"States.Array($.Target.Identifier)"}},"StatusChoice":{"Type":"Choice","Choices":[{"And":[{"Variable":"$.Params.Mode","StringEquals":"Start"},{"Variable":"$.Result.CurrentState","StringEquals":"stopped"}],"Next":"StartInstance"},{"And":[{"Variable":"$.Params.Mode","StringEquals":"Stop"},{"Variable":"$.Result.CurrentState","StringEquals":"running"}],"Next":"StopInstance"},{"Or":[{"And":[{"Variable":"$.Params.Mode","StringEquals":"Start"},{"Variable":"$.Result.CurrentState","StringEquals":"running"}]},{"And":[{"Variable":"$.Params.Mode","StringEquals":"Stop"},{"Variable":"$.Result.CurrentState","StringEquals":"stopped"}]}],"Next":"InstanceStatusChangeSucceed"},{"Or":[{"And":[{"And":[{"Variable":"$.Params.Mode","StringEquals":"Start"},{"Or":[{"Variable":"$.Result.CurrentState","StringEquals":"pending"}]}]}]},{"And":[{"And":[{"Variable":"$.Params.Mode","StringEquals":"Stop"},{"Or":[{"Variable":"$.Result.CurrentState","StringEquals":"stopping"},{"Variable":"$.Result.CurrentState","StringEquals":"shutting-down"}]}]}]}],"Next":"StatusChangeWait"}],"Default":"StatusFail"},"StatusFail":{"Type":"Fail","Cause":"instance status fail."},"StartInstance":{"Next":"StatusChangeWait","Type":"Task","ResultPath":"$.Result","ResultSelector":{"CurrentState.$":"$.StartingInstances[0].CurrentState.Name"},"Resource":"arn:",
               {
                 "Ref": "AWS::Partition",
               },
-              ":states:::aws-sdk:ec2:describeInstanceStatus","Parameters":{"InstanceIds.$":"$.Result.TargetInstanceId"}},"InstanceStatusChangeSucceed":{"Type":"Succeed"}}},"MaxConcurrency":10}}}",
+              ":states:::aws-sdk:ec2:startInstances","Parameters":{"InstanceIds.$":"States.Array($.Target.Identifier)"}},"InstanceStatusChangeSucceed":{"Type":"Succeed"}}},"MaxConcurrency":10}}}",
             ],
           ],
         },
@@ -257,7 +257,7 @@ exports[`Ec2InstanceRunningScheduleStack specific Testing Should match snapshot:
               "Resource": "*",
             },
             {
-              "Action": "ec2:startInstances",
+              "Action": "ec2:describeInstances",
               "Effect": "Allow",
               "Resource": "*",
             },
@@ -267,7 +267,7 @@ exports[`Ec2InstanceRunningScheduleStack specific Testing Should match snapshot:
               "Resource": "*",
             },
             {
-              "Action": "ec2:describeInstanceStatus",
+              "Action": "ec2:startInstances",
               "Effect": "Allow",
               "Resource": "*",
             },

@@ -1,11 +1,11 @@
-[![GitHub](https://img.shields.io/github/license/yicr/aws-ec2-instance-running-schedule-stack?style=flat-square)](https://github.com/yicr/aws-ec2-instance-running-schedule-stack/blob/main/LICENSE)
-[![npm (scoped)](https://img.shields.io/npm/v/@gammarer/aws-ec2-instance-running-schedule-stack?style=flat-square)](https://www.npmjs.com/package/@gammarer/aws-ec2-instance-running-schedule-stack)
-[![PyPI](https://img.shields.io/pypi/v/gammarer.aws-ec2-instance-running-schedule-stack?style=flat-square)](https://pypi.org/project/gammarer.aws-ec2-instance-running-schedule-stack/)
-[![Nuget](https://img.shields.io/nuget/v/Gammarer.CDK.AWS.Ec2InstanceRunningScheduleStack?style=flat-square)](https://www.nuget.org/packages/Gammarer.CDK.AWS.Ec2InstanceRunningScheduleStack/)
-[![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/yicr/aws-ec2-instance-running-schedule-stack/release.yml?branch=main&label=release&style=flat-square)](https://github.com/yicr/aws-ec2-instance-running-schedule-stack/actions/workflows/release.yml)
-[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/yicr/aws-ec2-instance-running-schedule-stack?sort=semver&style=flat-square)](https://github.com/yicr/aws-ec2-instance-running-schedule-stack/releases)
-
 # AWS EC2 Instance Running Schedule Stack
+
+[![GitHub](https://img.shields.io/github/license/gammarers/aws-ec2-instance-running-schedule-stack?style=flat-square)](https://github.com/gammarers/aws-ec2-instance-running-schedule-stack/blob/main/LICENSE)
+[![npm (scoped)](https://img.shields.io/npm/v/@gammarers/aws-ec2-instance-running-schedule-stack?style=flat-square)](https://www.npmjs.com/package/@gammarers/aws-ec2-instance-running-schedule-stack)
+[![PyPI](https://img.shields.io/pypi/v/gammarers.aws-ec2-instance-running-schedule-stack?style=flat-square)](https://pypi.org/project/gammarers.aws-ec2-instance-running-schedule-stack/)
+[![Nuget](https://img.shields.io/nuget/v/Gammarers.CDK.AWS.EC2InstanceRunningScheduleStack?style=flat-square)](https://www.nuget.org/packages/Gammarers.CDK.AWS.EC2InstanceRunningScheduleStack/)
+[![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/gammarers/aws-ec2-instance-running-schedule-stack/release.yml?branch=main&label=release&style=flat-square)](https://github.com/gammarers/aws-ec2-instance-running-schedule-stack/actions/workflows/release.yml)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/gammarers/aws-ec2-instance-running-schedule-stack?sort=semver&style=flat-square)](https://github.com/gammarers/aws-ec2-instance-running-schedule-stack/releases)
 
 This is an AWS CDK Construct to make EC2 instance running schedule (only running while working hours(start/stop)).
 

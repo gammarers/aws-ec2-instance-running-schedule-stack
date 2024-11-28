@@ -47,7 +47,7 @@ pip install gammarer.aws-ec2-instance-running-schedule-stack
 ### C# / .NET
 
 ```shell
-dotnet add package Gammarer.CDK.AWS.Ec2InstanceRunningScheduler
+dotnet add package Gammarer.CDK.AWS.Ec2InstanceRunningScheduleStack
 ```
 
 ## Example

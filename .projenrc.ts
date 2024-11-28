@@ -20,7 +20,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   depsUpgradeOptions: {
     workflowOptions: {
       labels: ['auto-approve', 'auto-merge'],
-      schedule: javascript.UpgradeDependenciesSchedule.expressions(['0 16 * * 3']), // every wednesday 16:00 (JST/THU:0100)
+      schedule: javascript.UpgradeDependenciesSchedule.expressions(['0 16 * * 3']),
     },
   },
   autoApproveOptions: {
@@ -28,12 +28,12 @@ const project = new awscdk.AwsCdkConstructLibrary({
     allowedUsernames: ['yicr'],
   },
   publishToPypi: {
-    distName: 'gammarer.aws-ec2-instance-running-scheduler',
-    module: 'gammarer.aws_ec2_instance_running_scheduler',
+    distName: 'gammarers.aws-ec2-instance-running-schedule-stack',
+    module: 'gammarers.aws_ec2_instance_running_schedule_stack',
   },
   publishToNuget: {
-    dotNetNamespace: 'Gammarer.CDK.AWS',
-    packageId: 'Gammarer.CDK.AWS.Ec2InstanceRunningScheduler',
+    dotNetNamespace: 'Gammarers.CDK.AWS',
+    packageId: 'Gammarers.CDK.AWS.Ec2InstanceRunningScheduleStack',
   },
 });
 project.synth();

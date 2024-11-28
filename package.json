@@ -134,12 +134,12 @@
     "outdir": "dist",
     "targets": {
       "python": {
-        "distName": "gammarer.aws-ec2-instance-running-scheduler",
-        "module": "gammarer.aws_ec2_instance_running_scheduler"
+        "distName": "gammarers.aws-ec2-instance-running-schedule-stack",
+        "module": "gammarers.aws_ec2_instance_running_schedule_stack"
       },
       "dotnet": {
-        "namespace": "Gammarer.CDK.AWS",
-        "packageId": "Gammarer.CDK.AWS.Ec2InstanceRunningScheduler"
+        "namespace": "Gammarers.CDK.AWS",
+        "packageId": "Gammarers.CDK.AWS.Ec2InstanceRunningScheduleStack"
       }
     },
     "tsc": {

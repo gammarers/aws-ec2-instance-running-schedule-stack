@@ -14,7 +14,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   repositoryUrl: 'https://github.com/gammarers/aws-ec2-instance-running-schedule-stack.git',
   releaseToNpm: true,
   npmAccess: javascript.NpmAccess.PUBLIC,
-  majorVersion: 1,
+  majorVersion: 2,
   minNodeVersion: '16.0.0',
   workflowNodeVersion: '22.4.x',
   depsUpgradeOptions: {

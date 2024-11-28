@@ -33,7 +33,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
   publishToNuget: {
     dotNetNamespace: 'Gammarers.CDK.AWS',
-    packageId: 'Gammarers.CDK.AWS.Ec2InstanceRunningScheduleStack',
+    packageId: 'Gammarers.CDK.AWS.EC2InstanceRunningScheduleStack',
   },
 });
 project.synth();

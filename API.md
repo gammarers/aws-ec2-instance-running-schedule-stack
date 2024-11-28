@@ -2,39 +2,39 @@
 
 ## Constructs <a name="Constructs" id="Constructs"></a>
 
-### EC2InstanceRunningScheduleStack <a name="EC2InstanceRunningScheduleStack" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack"></a>
+### EC2InstanceRunningScheduleStack <a name="EC2InstanceRunningScheduleStack" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack"></a>
 
-#### Initializers <a name="Initializers" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.Initializer"></a>
+#### Initializers <a name="Initializers" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.Initializer"></a>
 
 ```typescript
-import { EC2InstanceRunningScheduleStack } from '@gammarer/aws-ec2-instance-running-scheduler'
+import { EC2InstanceRunningScheduleStack } from '@gammarers/aws-ec2-instance-running-schedule-stack'
 
 new EC2InstanceRunningScheduleStack(scope: Construct, id: string, props: EC2InstanceRunningScheduleStackProps)
 ```
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.Initializer.parameter.props">props</a></code> | <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStackProps">EC2InstanceRunningScheduleStackProps</a></code> | *No description.* |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.Initializer.parameter.props">props</a></code> | <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStackProps">EC2InstanceRunningScheduleStackProps</a></code> | *No description.* |
 
 ---
 
-##### `scope`<sup>Required</sup> <a name="scope" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.Initializer.parameter.scope"></a>
+##### `scope`<sup>Required</sup> <a name="scope" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.Initializer.parameter.scope"></a>
 
 - *Type:* constructs.Construct
 
 ---
 
-##### `id`<sup>Required</sup> <a name="id" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.Initializer.parameter.id"></a>
+##### `id`<sup>Required</sup> <a name="id" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.Initializer.parameter.id"></a>
 
 - *Type:* string
 
 ---
 
-##### `props`<sup>Required</sup> <a name="props" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.Initializer.parameter.props"></a>
+##### `props`<sup>Required</sup> <a name="props" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.Initializer.parameter.props"></a>
 
-- *Type:* <a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStackProps">EC2InstanceRunningScheduleStackProps</a>
+- *Type:* <a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStackProps">EC2InstanceRunningScheduleStackProps</a>
 
 ---
 
@@ -42,25 +42,25 @@ new EC2InstanceRunningScheduleStack(scope: Construct, id: string, props: EC2Inst
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.toString">toString</a></code> | Returns a string representation of this construct. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.addDependency">addDependency</a></code> | Add a dependency between this stack and another stack. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.addMetadata">addMetadata</a></code> | Adds an arbitary key-value pair, with information you want to record about the stack. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.addTransform">addTransform</a></code> | Add a Transform to this stack. A Transform is a macro that AWS CloudFormation uses to process your template. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.exportStringListValue">exportStringListValue</a></code> | Create a CloudFormation Export for a string list value. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.exportValue">exportValue</a></code> | Create a CloudFormation Export for a string value. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.formatArn">formatArn</a></code> | Creates an ARN from components. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.getLogicalId">getLogicalId</a></code> | Allocates a stack-unique CloudFormation-compatible logical identity for a specific resource. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.regionalFact">regionalFact</a></code> | Look up a fact value for the given fact for the region of this stack. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.renameLogicalId">renameLogicalId</a></code> | Rename a generated logical identities. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.reportMissingContextKey">reportMissingContextKey</a></code> | Indicate that a context key was expected. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.resolve">resolve</a></code> | Resolve a tokenized value in the context of the current stack. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.splitArn">splitArn</a></code> | Splits the provided ARN into its components. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.toJsonString">toJsonString</a></code> | Convert an object, potentially containing tokens, to a JSON string. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.toYamlString">toYamlString</a></code> | Convert an object, potentially containing tokens, to a YAML string. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.addDependency">addDependency</a></code> | Add a dependency between this stack and another stack. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.addMetadata">addMetadata</a></code> | Adds an arbitary key-value pair, with information you want to record about the stack. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.addTransform">addTransform</a></code> | Add a Transform to this stack. A Transform is a macro that AWS CloudFormation uses to process your template. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.exportStringListValue">exportStringListValue</a></code> | Create a CloudFormation Export for a string list value. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.exportValue">exportValue</a></code> | Create a CloudFormation Export for a string value. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.formatArn">formatArn</a></code> | Creates an ARN from components. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.getLogicalId">getLogicalId</a></code> | Allocates a stack-unique CloudFormation-compatible logical identity for a specific resource. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.regionalFact">regionalFact</a></code> | Look up a fact value for the given fact for the region of this stack. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.renameLogicalId">renameLogicalId</a></code> | Rename a generated logical identities. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.reportMissingContextKey">reportMissingContextKey</a></code> | Indicate that a context key was expected. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.resolve">resolve</a></code> | Resolve a tokenized value in the context of the current stack. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.splitArn">splitArn</a></code> | Splits the provided ARN into its components. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.toJsonString">toJsonString</a></code> | Convert an object, potentially containing tokens, to a JSON string. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.toYamlString">toYamlString</a></code> | Convert an object, potentially containing tokens, to a YAML string. |
 
 ---
 
-##### `toString` <a name="toString" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.toString"></a>
+##### `toString` <a name="toString" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.toString"></a>
 
 ```typescript
 public toString(): string
@@ -68,7 +68,7 @@ public toString(): string
 
 Returns a string representation of this construct.
 
-##### `addDependency` <a name="addDependency" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.addDependency"></a>
+##### `addDependency` <a name="addDependency" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.addDependency"></a>
 
 ```typescript
 public addDependency(target: Stack, reason?: string): void
@@ -79,19 +79,19 @@ Add a dependency between this stack and another stack.
 This can be used to define dependencies between any two stacks within an
 app, and also supports nested stacks.
 
-###### `target`<sup>Required</sup> <a name="target" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.addDependency.parameter.target"></a>
+###### `target`<sup>Required</sup> <a name="target" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.addDependency.parameter.target"></a>
 
 - *Type:* aws-cdk-lib.Stack
 
 ---
 
-###### `reason`<sup>Optional</sup> <a name="reason" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.addDependency.parameter.reason"></a>
+###### `reason`<sup>Optional</sup> <a name="reason" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.addDependency.parameter.reason"></a>
 
 - *Type:* string
 
 ---
 
-##### `addMetadata` <a name="addMetadata" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.addMetadata"></a>
+##### `addMetadata` <a name="addMetadata" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.addMetadata"></a>
 
 ```typescript
 public addMetadata(key: string, value: any): void
@@ -103,19 +103,19 @@ These get translated to the Metadata section of the generated template.
 
 > [https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/metadata-section-structure.html](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/metadata-section-structure.html)
 
-###### `key`<sup>Required</sup> <a name="key" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.addMetadata.parameter.key"></a>
+###### `key`<sup>Required</sup> <a name="key" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.addMetadata.parameter.key"></a>
 
 - *Type:* string
 
 ---
 
-###### `value`<sup>Required</sup> <a name="value" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.addMetadata.parameter.value"></a>
+###### `value`<sup>Required</sup> <a name="value" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.addMetadata.parameter.value"></a>
 
 - *Type:* any
 
 ---
 
-##### `addTransform` <a name="addTransform" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.addTransform"></a>
+##### `addTransform` <a name="addTransform" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.addTransform"></a>
 
 ```typescript
 public addTransform(transform: string): void
@@ -136,7 +136,7 @@ stack.addTransform('AWS::Serverless-2016-10-31')
 ```
 
 
-###### `transform`<sup>Required</sup> <a name="transform" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.addTransform.parameter.transform"></a>
+###### `transform`<sup>Required</sup> <a name="transform" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.addTransform.parameter.transform"></a>
 
 - *Type:* string
 
@@ -144,7 +144,7 @@ The transform to add.
 
 ---
 
-##### `exportStringListValue` <a name="exportStringListValue" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.exportStringListValue"></a>
+##### `exportStringListValue` <a name="exportStringListValue" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.exportStringListValue"></a>
 
 ```typescript
 public exportStringListValue(exportedValue: any, options?: ExportValueOptions): string[]
@@ -170,19 +170,19 @@ the resource and the manual export.
 
 See `exportValue` for an example of this process.
 
-###### `exportedValue`<sup>Required</sup> <a name="exportedValue" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.exportStringListValue.parameter.exportedValue"></a>
+###### `exportedValue`<sup>Required</sup> <a name="exportedValue" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.exportStringListValue.parameter.exportedValue"></a>
 
 - *Type:* any
 
 ---
 
-###### `options`<sup>Optional</sup> <a name="options" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.exportStringListValue.parameter.options"></a>
+###### `options`<sup>Optional</sup> <a name="options" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.exportStringListValue.parameter.options"></a>
 
 - *Type:* aws-cdk-lib.ExportValueOptions
 
 ---
 
-##### `exportValue` <a name="exportValue" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.exportValue"></a>
+##### `exportValue` <a name="exportValue" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.exportValue"></a>
 
 ```typescript
 public exportValue(exportedValue: any, options?: ExportValueOptions): string
@@ -233,19 +233,19 @@ Instead, the process takes two deployments:
 - Don't forget to remove the `exportValue()` call as well.
 - Deploy again (this time only the `producerStack` will be changed -- the bucket will be deleted).
 
-###### `exportedValue`<sup>Required</sup> <a name="exportedValue" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.exportValue.parameter.exportedValue"></a>
+###### `exportedValue`<sup>Required</sup> <a name="exportedValue" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.exportValue.parameter.exportedValue"></a>
 
 - *Type:* any
 
 ---
 
-###### `options`<sup>Optional</sup> <a name="options" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.exportValue.parameter.options"></a>
+###### `options`<sup>Optional</sup> <a name="options" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.exportValue.parameter.options"></a>
 
 - *Type:* aws-cdk-lib.ExportValueOptions
 
 ---
 
-##### `formatArn` <a name="formatArn" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.formatArn"></a>
+##### `formatArn` <a name="formatArn" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.formatArn"></a>
 
 ```typescript
 public formatArn(components: ArnComponents): string
@@ -267,13 +267,13 @@ The required ARN pieces that are omitted will be taken from the stack that
 the 'scope' is attached to. If all ARN pieces are supplied, the supplied scope
 can be 'undefined'.
 
-###### `components`<sup>Required</sup> <a name="components" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.formatArn.parameter.components"></a>
+###### `components`<sup>Required</sup> <a name="components" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.formatArn.parameter.components"></a>
 
 - *Type:* aws-cdk-lib.ArnComponents
 
 ---
 
-##### `getLogicalId` <a name="getLogicalId" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.getLogicalId"></a>
+##### `getLogicalId` <a name="getLogicalId" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.getLogicalId"></a>
 
 ```typescript
 public getLogicalId(element: CfnElement): string
@@ -289,7 +289,7 @@ This method uses the protected method `allocateLogicalId` to render the
 logical ID for an element. To modify the naming scheme, extend the `Stack`
 class and override this method.
 
-###### `element`<sup>Required</sup> <a name="element" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.getLogicalId.parameter.element"></a>
+###### `element`<sup>Required</sup> <a name="element" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.getLogicalId.parameter.element"></a>
 
 - *Type:* aws-cdk-lib.CfnElement
 
@@ -297,7 +297,7 @@ The CloudFormation element for which a logical identity is needed.
 
 ---
 
-##### `regionalFact` <a name="regionalFact" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.regionalFact"></a>
+##### `regionalFact` <a name="regionalFact" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.regionalFact"></a>
 
 ```typescript
 public regionalFact(factName: string, defaultValue?: string): string
@@ -321,19 +321,19 @@ not have to worry about regional facts.
 If `defaultValue` is not given, it is an error if the fact is unknown for
 the given region.
 
-###### `factName`<sup>Required</sup> <a name="factName" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.regionalFact.parameter.factName"></a>
+###### `factName`<sup>Required</sup> <a name="factName" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.regionalFact.parameter.factName"></a>
 
 - *Type:* string
 
 ---
 
-###### `defaultValue`<sup>Optional</sup> <a name="defaultValue" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.regionalFact.parameter.defaultValue"></a>
+###### `defaultValue`<sup>Optional</sup> <a name="defaultValue" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.regionalFact.parameter.defaultValue"></a>
 
 - *Type:* string
 
 ---
 
-##### `renameLogicalId` <a name="renameLogicalId" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.renameLogicalId"></a>
+##### `renameLogicalId` <a name="renameLogicalId" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.renameLogicalId"></a>
 
 ```typescript
 public renameLogicalId(oldId: string, newId: string): void
@@ -344,19 +344,19 @@ Rename a generated logical identities.
 To modify the naming scheme strategy, extend the `Stack` class and
 override the `allocateLogicalId` method.
 
-###### `oldId`<sup>Required</sup> <a name="oldId" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.renameLogicalId.parameter.oldId"></a>
+###### `oldId`<sup>Required</sup> <a name="oldId" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.renameLogicalId.parameter.oldId"></a>
 
 - *Type:* string
 
 ---
 
-###### `newId`<sup>Required</sup> <a name="newId" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.renameLogicalId.parameter.newId"></a>
+###### `newId`<sup>Required</sup> <a name="newId" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.renameLogicalId.parameter.newId"></a>
 
 - *Type:* string
 
 ---
 
-##### `reportMissingContextKey` <a name="reportMissingContextKey" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.reportMissingContextKey"></a>
+##### `reportMissingContextKey` <a name="reportMissingContextKey" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.reportMissingContextKey"></a>
 
 ```typescript
 public reportMissingContextKey(report: MissingContext): void
@@ -367,7 +367,7 @@ Indicate that a context key was expected.
 Contains instructions which will be emitted into the cloud assembly on how
 the key should be supplied.
 
-###### `report`<sup>Required</sup> <a name="report" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.reportMissingContextKey.parameter.report"></a>
+###### `report`<sup>Required</sup> <a name="report" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.reportMissingContextKey.parameter.report"></a>
 
 - *Type:* aws-cdk-lib.cloud_assembly_schema.MissingContext
 
@@ -375,7 +375,7 @@ The set of parameters needed to obtain the context.
 
 ---
 
-##### `resolve` <a name="resolve" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.resolve"></a>
+##### `resolve` <a name="resolve" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.resolve"></a>
 
 ```typescript
 public resolve(obj: any): any
@@ -383,13 +383,13 @@ public resolve(obj: any): any
 
 Resolve a tokenized value in the context of the current stack.
 
-###### `obj`<sup>Required</sup> <a name="obj" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.resolve.parameter.obj"></a>
+###### `obj`<sup>Required</sup> <a name="obj" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.resolve.parameter.obj"></a>
 
 - *Type:* any
 
 ---
 
-##### `splitArn` <a name="splitArn" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.splitArn"></a>
+##### `splitArn` <a name="splitArn" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.splitArn"></a>
 
 ```typescript
 public splitArn(arn: string, arnFormat: ArnFormat): ArnComponents
@@ -402,7 +402,7 @@ and a Token representing a dynamic CloudFormation expression
 (in which case the returned components will also be dynamic CloudFormation expressions,
 encoded as Tokens).
 
-###### `arn`<sup>Required</sup> <a name="arn" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.splitArn.parameter.arn"></a>
+###### `arn`<sup>Required</sup> <a name="arn" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.splitArn.parameter.arn"></a>
 
 - *Type:* string
 
@@ -410,7 +410,7 @@ the ARN to split into its components.
 
 ---
 
-###### `arnFormat`<sup>Required</sup> <a name="arnFormat" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.splitArn.parameter.arnFormat"></a>
+###### `arnFormat`<sup>Required</sup> <a name="arnFormat" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.splitArn.parameter.arnFormat"></a>
 
 - *Type:* aws-cdk-lib.ArnFormat
 
@@ -418,7 +418,7 @@ the expected format of 'arn' - depends on what format the service 'arn' represen
 
 ---
 
-##### `toJsonString` <a name="toJsonString" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.toJsonString"></a>
+##### `toJsonString` <a name="toJsonString" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.toJsonString"></a>
 
 ```typescript
 public toJsonString(obj: any, space?: number): string
@@ -426,19 +426,19 @@ public toJsonString(obj: any, space?: number): string
 
 Convert an object, potentially containing tokens, to a JSON string.
 
-###### `obj`<sup>Required</sup> <a name="obj" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.toJsonString.parameter.obj"></a>
+###### `obj`<sup>Required</sup> <a name="obj" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.toJsonString.parameter.obj"></a>
 
 - *Type:* any
 
 ---
 
-###### `space`<sup>Optional</sup> <a name="space" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.toJsonString.parameter.space"></a>
+###### `space`<sup>Optional</sup> <a name="space" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.toJsonString.parameter.space"></a>
 
 - *Type:* number
 
 ---
 
-##### `toYamlString` <a name="toYamlString" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.toYamlString"></a>
+##### `toYamlString` <a name="toYamlString" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.toYamlString"></a>
 
 ```typescript
 public toYamlString(obj: any): string
@@ -446,7 +446,7 @@ public toYamlString(obj: any): string
 
 Convert an object, potentially containing tokens, to a YAML string.
 
-###### `obj`<sup>Required</sup> <a name="obj" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.toYamlString.parameter.obj"></a>
+###### `obj`<sup>Required</sup> <a name="obj" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.toYamlString.parameter.obj"></a>
 
 - *Type:* any
 
@@ -456,23 +456,23 @@ Convert an object, potentially containing tokens, to a YAML string.
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.isStack">isStack</a></code> | Return whether the given object is a Stack. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.of">of</a></code> | Looks up the first stack scope in which `construct` is defined. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.isStack">isStack</a></code> | Return whether the given object is a Stack. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.of">of</a></code> | Looks up the first stack scope in which `construct` is defined. |
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.isConstruct"></a>
+##### ~~`isConstruct`~~ <a name="isConstruct" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.isConstruct"></a>
 
 ```typescript
-import { EC2InstanceRunningScheduleStack } from '@gammarer/aws-ec2-instance-running-scheduler'
+import { EC2InstanceRunningScheduleStack } from '@gammarers/aws-ec2-instance-running-schedule-stack'
 
 EC2InstanceRunningScheduleStack.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
 
-###### `x`<sup>Required</sup> <a name="x" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.isConstruct.parameter.x"></a>
+###### `x`<sup>Required</sup> <a name="x" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.isConstruct.parameter.x"></a>
 
 - *Type:* any
 
@@ -480,10 +480,10 @@ Any object.
 
 ---
 
-##### `isStack` <a name="isStack" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.isStack"></a>
+##### `isStack` <a name="isStack" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.isStack"></a>
 
 ```typescript
-import { EC2InstanceRunningScheduleStack } from '@gammarer/aws-ec2-instance-running-scheduler'
+import { EC2InstanceRunningScheduleStack } from '@gammarers/aws-ec2-instance-running-schedule-stack'
 
 EC2InstanceRunningScheduleStack.isStack(x: any)
 ```
@@ -492,16 +492,16 @@ Return whether the given object is a Stack.
 
 We do attribute detection since we can't reliably use 'instanceof'.
 
-###### `x`<sup>Required</sup> <a name="x" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.isStack.parameter.x"></a>
+###### `x`<sup>Required</sup> <a name="x" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.isStack.parameter.x"></a>
 
 - *Type:* any
 
 ---
 
-##### `of` <a name="of" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.of"></a>
+##### `of` <a name="of" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.of"></a>
 
 ```typescript
-import { EC2InstanceRunningScheduleStack } from '@gammarer/aws-ec2-instance-running-scheduler'
+import { EC2InstanceRunningScheduleStack } from '@gammarers/aws-ec2-instance-running-schedule-stack'
 
 EC2InstanceRunningScheduleStack.of(construct: IConstruct)
 ```
@@ -510,7 +510,7 @@ Looks up the first stack scope in which `construct` is defined.
 
 Fails if there is no stack up the tree.
 
-###### `construct`<sup>Required</sup> <a name="construct" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.of.parameter.construct"></a>
+###### `construct`<sup>Required</sup> <a name="construct" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.of.parameter.construct"></a>
 
 - *Type:* constructs.IConstruct
 
@@ -522,31 +522,31 @@ The construct to start the search from.
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.account">account</a></code> | <code>string</code> | The AWS account into which this stack will be deployed. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.artifactId">artifactId</a></code> | <code>string</code> | The ID of the cloud assembly artifact for this stack. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.availabilityZones">availabilityZones</a></code> | <code>string[]</code> | Returns the list of AZs that are available in the AWS environment (account/region) associated with this stack. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.bundlingRequired">bundlingRequired</a></code> | <code>boolean</code> | Indicates whether the stack requires bundling or not. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.dependencies">dependencies</a></code> | <code>aws-cdk-lib.Stack[]</code> | Return the stacks this stack depends on. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.environment">environment</a></code> | <code>string</code> | The environment coordinates in which this stack is deployed. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.nested">nested</a></code> | <code>boolean</code> | Indicates if this is a nested stack, in which case `parentStack` will include a reference to it's parent. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.notificationArns">notificationArns</a></code> | <code>string[]</code> | Returns the list of notification Amazon Resource Names (ARNs) for the current stack. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.partition">partition</a></code> | <code>string</code> | The partition in which this stack is defined. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.region">region</a></code> | <code>string</code> | The AWS region into which this stack will be deployed (e.g. `us-west-2`). |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.stackId">stackId</a></code> | <code>string</code> | The ID of the stack. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.stackName">stackName</a></code> | <code>string</code> | The concrete CloudFormation physical stack name. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.synthesizer">synthesizer</a></code> | <code>aws-cdk-lib.IStackSynthesizer</code> | Synthesis method for this stack. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.tags">tags</a></code> | <code>aws-cdk-lib.TagManager</code> | Tags to be applied to the stack. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.templateFile">templateFile</a></code> | <code>string</code> | The name of the CloudFormation template file emitted to the output directory during synthesis. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.templateOptions">templateOptions</a></code> | <code>aws-cdk-lib.ITemplateOptions</code> | Options for CloudFormation template (like version, transform, description). |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.urlSuffix">urlSuffix</a></code> | <code>string</code> | The Amazon domain suffix for the region in which this stack is defined. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.nestedStackParent">nestedStackParent</a></code> | <code>aws-cdk-lib.Stack</code> | If this is a nested stack, returns it's parent stack. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.nestedStackResource">nestedStackResource</a></code> | <code>aws-cdk-lib.CfnResource</code> | If this is a nested stack, this represents its `AWS::CloudFormation::Stack` resource. |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.terminationProtection">terminationProtection</a></code> | <code>boolean</code> | Whether termination protection is enabled for this stack. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.account">account</a></code> | <code>string</code> | The AWS account into which this stack will be deployed. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.artifactId">artifactId</a></code> | <code>string</code> | The ID of the cloud assembly artifact for this stack. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.availabilityZones">availabilityZones</a></code> | <code>string[]</code> | Returns the list of AZs that are available in the AWS environment (account/region) associated with this stack. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.bundlingRequired">bundlingRequired</a></code> | <code>boolean</code> | Indicates whether the stack requires bundling or not. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.dependencies">dependencies</a></code> | <code>aws-cdk-lib.Stack[]</code> | Return the stacks this stack depends on. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.environment">environment</a></code> | <code>string</code> | The environment coordinates in which this stack is deployed. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.nested">nested</a></code> | <code>boolean</code> | Indicates if this is a nested stack, in which case `parentStack` will include a reference to it's parent. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.notificationArns">notificationArns</a></code> | <code>string[]</code> | Returns the list of notification Amazon Resource Names (ARNs) for the current stack. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.partition">partition</a></code> | <code>string</code> | The partition in which this stack is defined. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.region">region</a></code> | <code>string</code> | The AWS region into which this stack will be deployed (e.g. `us-west-2`). |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.stackId">stackId</a></code> | <code>string</code> | The ID of the stack. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.stackName">stackName</a></code> | <code>string</code> | The concrete CloudFormation physical stack name. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.synthesizer">synthesizer</a></code> | <code>aws-cdk-lib.IStackSynthesizer</code> | Synthesis method for this stack. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.tags">tags</a></code> | <code>aws-cdk-lib.TagManager</code> | Tags to be applied to the stack. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.templateFile">templateFile</a></code> | <code>string</code> | The name of the CloudFormation template file emitted to the output directory during synthesis. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.templateOptions">templateOptions</a></code> | <code>aws-cdk-lib.ITemplateOptions</code> | Options for CloudFormation template (like version, transform, description). |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.urlSuffix">urlSuffix</a></code> | <code>string</code> | The Amazon domain suffix for the region in which this stack is defined. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.nestedStackParent">nestedStackParent</a></code> | <code>aws-cdk-lib.Stack</code> | If this is a nested stack, returns it's parent stack. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.nestedStackResource">nestedStackResource</a></code> | <code>aws-cdk-lib.CfnResource</code> | If this is a nested stack, this represents its `AWS::CloudFormation::Stack` resource. |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.terminationProtection">terminationProtection</a></code> | <code>boolean</code> | Whether termination protection is enabled for this stack. |
 
 ---
 
-##### `node`<sup>Required</sup> <a name="node" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.node"></a>
+##### `node`<sup>Required</sup> <a name="node" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.node"></a>
 
 ```typescript
 public readonly node: Node;
@@ -558,7 +558,7 @@ The tree node.
 
 ---
 
-##### `account`<sup>Required</sup> <a name="account" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.account"></a>
+##### `account`<sup>Required</sup> <a name="account" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.account"></a>
 
 ```typescript
 public readonly account: string;
@@ -587,7 +587,7 @@ implement some other region-agnostic behavior.
 
 ---
 
-##### `artifactId`<sup>Required</sup> <a name="artifactId" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.artifactId"></a>
+##### `artifactId`<sup>Required</sup> <a name="artifactId" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.artifactId"></a>
 
 ```typescript
 public readonly artifactId: string;
@@ -599,7 +599,7 @@ The ID of the cloud assembly artifact for this stack.
 
 ---
 
-##### `availabilityZones`<sup>Required</sup> <a name="availabilityZones" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.availabilityZones"></a>
+##### `availabilityZones`<sup>Required</sup> <a name="availabilityZones" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.availabilityZones"></a>
 
 ```typescript
 public readonly availabilityZones: string[];
@@ -622,7 +622,7 @@ To specify a different strategy for selecting availability zones override this m
 
 ---
 
-##### `bundlingRequired`<sup>Required</sup> <a name="bundlingRequired" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.bundlingRequired"></a>
+##### `bundlingRequired`<sup>Required</sup> <a name="bundlingRequired" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.bundlingRequired"></a>
 
 ```typescript
 public readonly bundlingRequired: boolean;
@@ -634,7 +634,7 @@ Indicates whether the stack requires bundling or not.
 
 ---
 
-##### `dependencies`<sup>Required</sup> <a name="dependencies" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.dependencies"></a>
+##### `dependencies`<sup>Required</sup> <a name="dependencies" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.dependencies"></a>
 
 ```typescript
 public readonly dependencies: Stack[];
@@ -646,7 +646,7 @@ Return the stacks this stack depends on.
 
 ---
 
-##### `environment`<sup>Required</sup> <a name="environment" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.environment"></a>
+##### `environment`<sup>Required</sup> <a name="environment" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.environment"></a>
 
 ```typescript
 public readonly environment: string;
@@ -670,7 +670,7 @@ region/account-agnostic.
 
 ---
 
-##### `nested`<sup>Required</sup> <a name="nested" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.nested"></a>
+##### `nested`<sup>Required</sup> <a name="nested" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.nested"></a>
 
 ```typescript
 public readonly nested: boolean;
@@ -682,7 +682,7 @@ Indicates if this is a nested stack, in which case `parentStack` will include a 
 
 ---
 
-##### `notificationArns`<sup>Required</sup> <a name="notificationArns" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.notificationArns"></a>
+##### `notificationArns`<sup>Required</sup> <a name="notificationArns" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.notificationArns"></a>
 
 ```typescript
 public readonly notificationArns: string[];
@@ -694,7 +694,7 @@ Returns the list of notification Amazon Resource Names (ARNs) for the current st
 
 ---
 
-##### `partition`<sup>Required</sup> <a name="partition" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.partition"></a>
+##### `partition`<sup>Required</sup> <a name="partition" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.partition"></a>
 
 ```typescript
 public readonly partition: string;
@@ -706,7 +706,7 @@ The partition in which this stack is defined.
 
 ---
 
-##### `region`<sup>Required</sup> <a name="region" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.region"></a>
+##### `region`<sup>Required</sup> <a name="region" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.region"></a>
 
 ```typescript
 public readonly region: string;
@@ -735,7 +735,7 @@ implement some other region-agnostic behavior.
 
 ---
 
-##### `stackId`<sup>Required</sup> <a name="stackId" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.stackId"></a>
+##### `stackId`<sup>Required</sup> <a name="stackId" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.stackId"></a>
 
 ```typescript
 public readonly stackId: string;
@@ -755,7 +755,7 @@ The ID of the stack.
 ```
 
 
-##### `stackName`<sup>Required</sup> <a name="stackName" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.stackName"></a>
+##### `stackName`<sup>Required</sup> <a name="stackName" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.stackName"></a>
 
 ```typescript
 public readonly stackName: string;
@@ -776,7 +776,7 @@ you can use `Aws.STACK_NAME` directly.
 
 ---
 
-##### `synthesizer`<sup>Required</sup> <a name="synthesizer" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.synthesizer"></a>
+##### `synthesizer`<sup>Required</sup> <a name="synthesizer" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.synthesizer"></a>
 
 ```typescript
 public readonly synthesizer: IStackSynthesizer;
@@ -788,7 +788,7 @@ Synthesis method for this stack.
 
 ---
 
-##### `tags`<sup>Required</sup> <a name="tags" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.tags"></a>
+##### `tags`<sup>Required</sup> <a name="tags" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.tags"></a>
 
 ```typescript
 public readonly tags: TagManager;
@@ -800,7 +800,7 @@ Tags to be applied to the stack.
 
 ---
 
-##### `templateFile`<sup>Required</sup> <a name="templateFile" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.templateFile"></a>
+##### `templateFile`<sup>Required</sup> <a name="templateFile" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.templateFile"></a>
 
 ```typescript
 public readonly templateFile: string;
@@ -814,7 +814,7 @@ Example value: `MyStack.template.json`
 
 ---
 
-##### `templateOptions`<sup>Required</sup> <a name="templateOptions" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.templateOptions"></a>
+##### `templateOptions`<sup>Required</sup> <a name="templateOptions" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.templateOptions"></a>
 
 ```typescript
 public readonly templateOptions: ITemplateOptions;
@@ -826,7 +826,7 @@ Options for CloudFormation template (like version, transform, description).
 
 ---
 
-##### `urlSuffix`<sup>Required</sup> <a name="urlSuffix" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.urlSuffix"></a>
+##### `urlSuffix`<sup>Required</sup> <a name="urlSuffix" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.urlSuffix"></a>
 
 ```typescript
 public readonly urlSuffix: string;
@@ -838,7 +838,7 @@ The Amazon domain suffix for the region in which this stack is defined.
 
 ---
 
-##### `nestedStackParent`<sup>Optional</sup> <a name="nestedStackParent" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.nestedStackParent"></a>
+##### `nestedStackParent`<sup>Optional</sup> <a name="nestedStackParent" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.nestedStackParent"></a>
 
 ```typescript
 public readonly nestedStackParent: Stack;
@@ -850,7 +850,7 @@ If this is a nested stack, returns it's parent stack.
 
 ---
 
-##### `nestedStackResource`<sup>Optional</sup> <a name="nestedStackResource" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.nestedStackResource"></a>
+##### `nestedStackResource`<sup>Optional</sup> <a name="nestedStackResource" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.nestedStackResource"></a>
 
 ```typescript
 public readonly nestedStackResource: CfnResource;
@@ -864,7 +864,7 @@ If this is a nested stack, this represents its `AWS::CloudFormation::Stack` reso
 
 ---
 
-##### `terminationProtection`<sup>Required</sup> <a name="terminationProtection" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStack.property.terminationProtection"></a>
+##### `terminationProtection`<sup>Required</sup> <a name="terminationProtection" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStack.property.terminationProtection"></a>
 
 ```typescript
 public readonly terminationProtection: boolean;
@@ -879,12 +879,12 @@ Whether termination protection is enabled for this stack.
 
 ## Structs <a name="Structs" id="Structs"></a>
 
-### EC2InstanceRunningScheduleStackProps <a name="EC2InstanceRunningScheduleStackProps" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStackProps"></a>
+### EC2InstanceRunningScheduleStackProps <a name="EC2InstanceRunningScheduleStackProps" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStackProps"></a>
 
-#### Initializer <a name="Initializer" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStackProps.Initializer"></a>
+#### Initializer <a name="Initializer" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStackProps.Initializer"></a>
 
 ```typescript
-import { EC2InstanceRunningScheduleStackProps } from '@gammarer/aws-ec2-instance-running-scheduler'
+import { EC2InstanceRunningScheduleStackProps } from '@gammarers/aws-ec2-instance-running-schedule-stack'
 
 const eC2InstanceRunningScheduleStackProps: EC2InstanceRunningScheduleStackProps = { ... }
 ```
@@ -893,48 +893,48 @@ const eC2InstanceRunningScheduleStackProps: EC2InstanceRunningScheduleStackProps
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStackProps.property.targetResource">targetResource</a></code> | <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.TargetResource">TargetResource</a></code> | *No description.* |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStackProps.property.startSchedule">startSchedule</a></code> | <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.Schedule">Schedule</a></code> | *No description.* |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStackProps.property.stopSchedule">stopSchedule</a></code> | <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.Schedule">Schedule</a></code> | *No description.* |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStackProps.property.targetResource">targetResource</a></code> | <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.TargetResource">TargetResource</a></code> | *No description.* |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStackProps.property.startSchedule">startSchedule</a></code> | <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.Schedule">Schedule</a></code> | *No description.* |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStackProps.property.stopSchedule">stopSchedule</a></code> | <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.Schedule">Schedule</a></code> | *No description.* |
 
 ---
 
-##### `targetResource`<sup>Required</sup> <a name="targetResource" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStackProps.property.targetResource"></a>
+##### `targetResource`<sup>Required</sup> <a name="targetResource" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStackProps.property.targetResource"></a>
 
 ```typescript
 public readonly targetResource: TargetResource;
 ```
 
-- *Type:* <a href="#@gammarer/aws-ec2-instance-running-scheduler.TargetResource">TargetResource</a>
+- *Type:* <a href="#@gammarers/aws-ec2-instance-running-schedule-stack.TargetResource">TargetResource</a>
 
 ---
 
-##### `startSchedule`<sup>Optional</sup> <a name="startSchedule" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStackProps.property.startSchedule"></a>
+##### `startSchedule`<sup>Optional</sup> <a name="startSchedule" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStackProps.property.startSchedule"></a>
 
 ```typescript
 public readonly startSchedule: Schedule;
 ```
 
-- *Type:* <a href="#@gammarer/aws-ec2-instance-running-scheduler.Schedule">Schedule</a>
+- *Type:* <a href="#@gammarers/aws-ec2-instance-running-schedule-stack.Schedule">Schedule</a>
 
 ---
 
-##### `stopSchedule`<sup>Optional</sup> <a name="stopSchedule" id="@gammarer/aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduleStackProps.property.stopSchedule"></a>
+##### `stopSchedule`<sup>Optional</sup> <a name="stopSchedule" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStackProps.property.stopSchedule"></a>
 
 ```typescript
 public readonly stopSchedule: Schedule;
 ```
 
-- *Type:* <a href="#@gammarer/aws-ec2-instance-running-scheduler.Schedule">Schedule</a>
+- *Type:* <a href="#@gammarers/aws-ec2-instance-running-schedule-stack.Schedule">Schedule</a>
 
 ---
 
-### Schedule <a name="Schedule" id="@gammarer/aws-ec2-instance-running-scheduler.Schedule"></a>
+### Schedule <a name="Schedule" id="@gammarers/aws-ec2-instance-running-schedule-stack.Schedule"></a>
 
-#### Initializer <a name="Initializer" id="@gammarer/aws-ec2-instance-running-scheduler.Schedule.Initializer"></a>
+#### Initializer <a name="Initializer" id="@gammarers/aws-ec2-instance-running-schedule-stack.Schedule.Initializer"></a>
 
 ```typescript
-import { Schedule } from '@gammarer/aws-ec2-instance-running-scheduler'
+import { Schedule } from '@gammarers/aws-ec2-instance-running-schedule-stack'
 
 const schedule: Schedule = { ... }
 ```
@@ -943,14 +943,14 @@ const schedule: Schedule = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.Schedule.property.timezone">timezone</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.Schedule.property.hour">hour</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.Schedule.property.minute">minute</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.Schedule.property.week">week</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.Schedule.property.timezone">timezone</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.Schedule.property.hour">hour</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.Schedule.property.minute">minute</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.Schedule.property.week">week</a></code> | <code>string</code> | *No description.* |
 
 ---
 
-##### `timezone`<sup>Required</sup> <a name="timezone" id="@gammarer/aws-ec2-instance-running-scheduler.Schedule.property.timezone"></a>
+##### `timezone`<sup>Required</sup> <a name="timezone" id="@gammarers/aws-ec2-instance-running-schedule-stack.Schedule.property.timezone"></a>
 
 ```typescript
 public readonly timezone: string;
@@ -960,7 +960,7 @@ public readonly timezone: string;
 
 ---
 
-##### `hour`<sup>Optional</sup> <a name="hour" id="@gammarer/aws-ec2-instance-running-scheduler.Schedule.property.hour"></a>
+##### `hour`<sup>Optional</sup> <a name="hour" id="@gammarers/aws-ec2-instance-running-schedule-stack.Schedule.property.hour"></a>
 
 ```typescript
 public readonly hour: string;
@@ -970,7 +970,7 @@ public readonly hour: string;
 
 ---
 
-##### `minute`<sup>Optional</sup> <a name="minute" id="@gammarer/aws-ec2-instance-running-scheduler.Schedule.property.minute"></a>
+##### `minute`<sup>Optional</sup> <a name="minute" id="@gammarers/aws-ec2-instance-running-schedule-stack.Schedule.property.minute"></a>
 
 ```typescript
 public readonly minute: string;
@@ -980,7 +980,7 @@ public readonly minute: string;
 
 ---
 
-##### `week`<sup>Optional</sup> <a name="week" id="@gammarer/aws-ec2-instance-running-scheduler.Schedule.property.week"></a>
+##### `week`<sup>Optional</sup> <a name="week" id="@gammarers/aws-ec2-instance-running-schedule-stack.Schedule.property.week"></a>
 
 ```typescript
 public readonly week: string;
@@ -990,12 +990,12 @@ public readonly week: string;
 
 ---
 
-### TargetResource <a name="TargetResource" id="@gammarer/aws-ec2-instance-running-scheduler.TargetResource"></a>
+### TargetResource <a name="TargetResource" id="@gammarers/aws-ec2-instance-running-schedule-stack.TargetResource"></a>
 
-#### Initializer <a name="Initializer" id="@gammarer/aws-ec2-instance-running-scheduler.TargetResource.Initializer"></a>
+#### Initializer <a name="Initializer" id="@gammarers/aws-ec2-instance-running-schedule-stack.TargetResource.Initializer"></a>
 
 ```typescript
-import { TargetResource } from '@gammarer/aws-ec2-instance-running-scheduler'
+import { TargetResource } from '@gammarers/aws-ec2-instance-running-schedule-stack'
 
 const targetResource: TargetResource = { ... }
 ```
@@ -1004,12 +1004,12 @@ const targetResource: TargetResource = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.TargetResource.property.tagKey">tagKey</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#@gammarer/aws-ec2-instance-running-scheduler.TargetResource.property.tagValues">tagValues</a></code> | <code>string[]</code> | *No description.* |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.TargetResource.property.tagKey">tagKey</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.TargetResource.property.tagValues">tagValues</a></code> | <code>string[]</code> | *No description.* |
 
 ---
 
-##### `tagKey`<sup>Required</sup> <a name="tagKey" id="@gammarer/aws-ec2-instance-running-scheduler.TargetResource.property.tagKey"></a>
+##### `tagKey`<sup>Required</sup> <a name="tagKey" id="@gammarers/aws-ec2-instance-running-schedule-stack.TargetResource.property.tagKey"></a>
 
 ```typescript
 public readonly tagKey: string;
@@ -1019,7 +1019,7 @@ public readonly tagKey: string;
 
 ---
 
-##### `tagValues`<sup>Required</sup> <a name="tagValues" id="@gammarer/aws-ec2-instance-running-scheduler.TargetResource.property.tagValues"></a>
+##### `tagValues`<sup>Required</sup> <a name="tagValues" id="@gammarers/aws-ec2-instance-running-schedule-stack.TargetResource.property.tagValues"></a>
 
 ```typescript
 public readonly tagValues: string[];

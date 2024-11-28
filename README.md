@@ -19,6 +19,8 @@ This construct creating resource list.
 
 - EventBridge Scheduler execution role
 - EventBridge Scheduler
+- Step Functions State machine
+- Step Functions State machine role
 
 ## Install
 

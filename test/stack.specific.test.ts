@@ -23,6 +23,12 @@ describe('Ec2InstanceRunningScheduleStack specific Testing', () => {
       hour: '19',
       week: 'MON-FRI',
     },
+    notifications: {
+      emails: [
+        'foo@example.com',
+        'bar@example.net',
+      ],
+    },
   });
 
   const template = Template.fromStack(stack);

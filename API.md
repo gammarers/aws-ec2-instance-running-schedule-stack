@@ -894,6 +894,7 @@ const eC2InstanceRunningScheduleStackProps: EC2InstanceRunningScheduleStackProps
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStackProps.property.targetResource">targetResource</a></code> | <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.TargetResource">TargetResource</a></code> | *No description.* |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStackProps.property.notifications">notifications</a></code> | <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.Notifications">Notifications</a></code> | *No description.* |
 | <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStackProps.property.startSchedule">startSchedule</a></code> | <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.Schedule">Schedule</a></code> | *No description.* |
 | <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStackProps.property.stopSchedule">stopSchedule</a></code> | <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.Schedule">Schedule</a></code> | *No description.* |
 
@@ -906,6 +907,16 @@ public readonly targetResource: TargetResource;
 ```
 
 - *Type:* <a href="#@gammarers/aws-ec2-instance-running-schedule-stack.TargetResource">TargetResource</a>
+
+---
+
+##### `notifications`<sup>Optional</sup> <a name="notifications" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStackProps.property.notifications"></a>
+
+```typescript
+public readonly notifications: Notifications;
+```
+
+- *Type:* <a href="#@gammarers/aws-ec2-instance-running-schedule-stack.Notifications">Notifications</a>
 
 ---
 
@@ -926,6 +937,34 @@ public readonly stopSchedule: Schedule;
 ```
 
 - *Type:* <a href="#@gammarers/aws-ec2-instance-running-schedule-stack.Schedule">Schedule</a>
+
+---
+
+### Notifications <a name="Notifications" id="@gammarers/aws-ec2-instance-running-schedule-stack.Notifications"></a>
+
+#### Initializer <a name="Initializer" id="@gammarers/aws-ec2-instance-running-schedule-stack.Notifications.Initializer"></a>
+
+```typescript
+import { Notifications } from '@gammarers/aws-ec2-instance-running-schedule-stack'
+
+const notifications: Notifications = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.Notifications.property.emails">emails</a></code> | <code>string[]</code> | *No description.* |
+
+---
+
+##### `emails`<sup>Optional</sup> <a name="emails" id="@gammarers/aws-ec2-instance-running-schedule-stack.Notifications.property.emails"></a>
+
+```typescript
+public readonly emails: string[];
+```
+
+- *Type:* string[]
 
 ---
 

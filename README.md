@@ -7,6 +7,8 @@
 [![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/gammarers/aws-ec2-instance-running-schedule-stack/release.yml?branch=main&label=release&style=flat-square)](https://github.com/gammarers/aws-ec2-instance-running-schedule-stack/actions/workflows/release.yml)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/gammarers/aws-ec2-instance-running-schedule-stack?sort=semver&style=flat-square)](https://github.com/gammarers/aws-ec2-instance-running-schedule-stack/releases)
 
+[![View on Construct Hub](https://constructs.dev/badge?package=@gammarers/aws-ec2-instance-running-schedule-stack)](https://constructs.dev/packages/@gammarers/aws-ec2-instance-running-schedule-stack)
+
 This is an AWS CDK Construct to make EC2 instance running schedule (only running while working hours(start/stop)).
 
 ## Fixed

@@ -22,6 +22,10 @@ This construct creating resource list.
 - Step Functions State machine
 - Step Functions State machine role
 
+## State Machine Execution Flow
+
+![](./images/state-machine.png)
+
 ## Install
 
 ### TypeScript
@@ -71,6 +75,12 @@ new EC2InstanceRunningScheduleStack(app, 'EC2InstanceRunningScheduleStack', {
     minute: '5',
     hour: '19',
     week: 'MON-FRI',
+  },
+  notifications: { // OPTIONAL NOTIFICATION
+    emails: [  // OPTIONAL SEND EMAIL FROM SNS
+      'foo@example.com',
+      'bar@example.net',
+    ],
   },
 });
 

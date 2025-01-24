@@ -1,6 +1,7 @@
 import { Stack } from 'aws-cdk-lib';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as scheduler from 'aws-cdk-lib/aws-scheduler';
+import * as sns from 'aws-cdk-lib/aws-sns';
 import { Construct } from 'constructs';
 import { RunningControlStateMachine } from './resources/running-control-state-machine';
 
@@ -16,20 +17,40 @@ export interface Schedule {
   readonly week?: string;
 }
 
+export interface Notifications {
+  readonly emails?: string[];
+  // readonly slack?: Slack;
+}
+
 export interface EC2InstanceRunningScheduleStackProps {
   readonly targetResource: TargetResource;
   readonly stopSchedule?: Schedule;
   readonly startSchedule?: Schedule;
+  readonly notifications?: Notifications;
 }
 
 export class EC2InstanceRunningScheduleStack extends Stack {
   constructor(scope: Construct, id: string, props: EC2InstanceRunningScheduleStackProps) {
     super(scope, id);
 
+    const topic: sns.Topic = new sns.Topic(this, 'NotificationTopic', {
+      // topicName: names.notificationTopicName,
+      // displayName: names.notificationTopicDisplayName,
+    });
+
+    const emails = props.notifications?.emails ?? [];
+    for (const [index, value] of emails.entries()) {
+      new sns.Subscription(this, `SubscriptionEmail${index.toString().padStart(3, '0')}`, {
+        topic,
+        protocol: sns.SubscriptionProtocol.EMAIL,
+        endpoint: value,
+      });
+    }
+
     // 👇 StepFunctions State Machine
     const machine = new RunningControlStateMachine(this, 'StateMachine', {
       stateMachineName: undefined,
-      // notificationTopic: topic,
+      notificationTopic: topic,
     });
 
     // 👇 EventBridge Scheduler IAM Role

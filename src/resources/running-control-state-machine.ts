@@ -1,11 +1,11 @@
 import { Duration } from 'aws-cdk-lib';
-// import * as sns from 'aws-cdk-lib/aws-sns';
+import * as sns from 'aws-cdk-lib/aws-sns';
 import * as sfn from 'aws-cdk-lib/aws-stepfunctions';
 import * as tasks from 'aws-cdk-lib/aws-stepfunctions-tasks';
 import { Construct } from 'constructs';
 
 export interface RunningControlStateMachineProps extends sfn.StateMachineProps {
-  // notificationTopic: sns.ITopic;
+  notificationTopic: sns.ITopic;
 }
 
 export class RunningControlStateMachine extends sfn.StateMachine {
@@ -14,7 +14,93 @@ export class RunningControlStateMachine extends sfn.StateMachine {
       ...props,
       definitionBody: (() => {
 
-        const succeed = new sfn.Succeed(scope, 'Succeed');
+        const initStateListDefinition: sfn.Pass = new sfn.Pass(scope, 'InitStateListDefinition', {
+          result: sfn.Result.fromObject([
+            { name: 'RUNNING', emoji: '☺', state: 'running' },
+            { name: 'STOPPED', emoji: '😴', state: 'stopped' },
+          ]),
+          resultPath: '$.definition.stateList',
+        });
+
+        const prepareTopicValue = new sfn.Pass(scope, 'PrepareTopicValue', {
+          resultPath: '$.prepare.topic.values',
+          parameters: {
+            emoji: sfn.JsonPath.arrayGetItem(sfn.JsonPath.stringAt('$.definition.stateList[?(@.state == $.Result.CurrentState)].emoji'), 0),
+            status: sfn.JsonPath.arrayGetItem(sfn.JsonPath.stringAt('$.definition.stateList[?(@.state == $.Result.CurrentState)].name'), 0),
+            account: sfn.JsonPath.arrayGetItem(sfn.JsonPath.stringSplit(sfn.JsonPath.stringAt('$.TargetResource'), ':'), 4), // account
+            region: sfn.JsonPath.arrayGetItem(sfn.JsonPath.stringSplit(sfn.JsonPath.stringAt('$.TargetResource'), ':'), 3), // region
+          },
+        }).next(new sfn.Pass(scope, 'GenerateTopic', {
+          resultPath: '$.Generate.Topic',
+          parameters: {
+            Subject: sfn.JsonPath.format('{} [{}] AWS EC2 Instance {} Running Notification [{}][{}]',
+              sfn.JsonPath.stringAt('$.prepare.topic.values.emoji'),
+              sfn.JsonPath.stringAt('$.prepare.topic.values.status'),
+              sfn.JsonPath.stringAt('$.Params.Mode'),
+              sfn.JsonPath.stringAt('$.prepare.topic.values.account'),
+              sfn.JsonPath.stringAt('$.prepare.topic.values.region'),
+            ),
+            TextMessage: sfn.JsonPath.format('{}\n\nAccount : {}\nRegion : {}\nIdentifier : {}\nStatus : {}',
+              sfn.JsonPath.format('The status of the EC2 instance changed to {} due to the schedule.',
+                sfn.JsonPath.stringAt('$.prepare.topic.values.status'),
+              ),
+              sfn.JsonPath.stringAt('$.prepare.topic.values.account'),
+              sfn.JsonPath.stringAt('$.prepare.topic.values.region'),
+              sfn.JsonPath.stringAt('$.Target.Identifier'),
+              sfn.JsonPath.stringAt('$.prepare.topic.values.status'),
+            ),
+            // todo: next send slack
+            //            SlackJsonMessage: {
+            //              attachments: [
+            //                {
+            //                  color: '#36a64f',
+            //                  pretext: sfn.JsonPath.format('{} The status of the RDS {} changed to {} due to the schedule.',
+            //                    sfn.JsonPath.stringAt('$.prepare.topic.values.emoji'),
+            //                    sfn.JsonPath.stringAt('$.Result.target.type'),
+            //                    sfn.JsonPath.stringAt('$.prepare.topic.values.status'),
+            //                  ),
+            //                  fields: [
+            //                    {
+            //                      title: 'Account',
+            //                      value: sfn.JsonPath.stringAt('$.prepare.topic.values.account'),
+            //                      short: true,
+            //                    },
+            //                    {
+            //                      title: 'Region',
+            //                      value: sfn.JsonPath.stringAt('$.prepare.topic.values.region'),
+            //                      short: true,
+            //                    },
+            //                    {
+            //                      title: 'Type',
+            //                      value: sfn.JsonPath.stringAt('$.Result.target.type'),
+            //                      short: true,
+            //                    },
+            //                    {
+            //                      title: 'Identifier',
+            //                      value: sfn.JsonPath.stringAt('$.Result.target.identifier'),
+            //                      short: true,
+            //                    },
+            //                    {
+            //                      title: 'Status',
+            //                      value: sfn.JsonPath.stringAt('$.prepare.topic.values.status'),
+            //                      short: true,
+            //                    },
+            //                  ],
+            //                },
+            //              ],
+            //            },
+          },
+        }).next(new tasks.SnsPublish(scope, 'SendNotification', {
+          topic: props.notificationTopic,
+          subject: sfn.JsonPath.stringAt('$.Generate.Topic.Subject'),
+          message: sfn.TaskInput.fromObject({
+            default: sfn.JsonPath.stringAt('$.Generate.Topic.TextMessage'),
+            email: sfn.JsonPath.stringAt('$.Generate.Topic.TextMessage'),
+            // lambda: sfn.JsonPath.jsonToString(sfn.JsonPath.objectAt('$.Generate.Topic.SlackJsonMessage')),
+          }),
+          messagePerSubscriptionType: true,
+          resultPath: '$.Result.SNS',
+        }).next(new sfn.Succeed(scope, 'InstanceStatusChangeSucceed'))));
 
         // aws resourcegroupstaggingapi get-resources --resource-type-filters ec2:instance
         // 👇 Get EC2 Instance Resource from Tag
@@ -40,6 +126,8 @@ export class RunningControlStateMachine extends sfn.StateMachine {
             TargetResources: sfn.JsonPath.listAt('$..ResourceTagMappingList[*].ResourceARN'),
           },
         });
+
+        initStateListDefinition.next(getTargetResources);
 
         const getTargetLength = new sfn.Pass(scope, 'CalculateArrayLength', {
           resultPath: '$.TargetResourceLength', // 中間結果を格納する場所
@@ -129,7 +217,7 @@ export class RunningControlStateMachine extends sfn.StateMachine {
                 sfn.Condition.stringEquals('$.Result.CurrentState', 'stopped'),
               ),
             ),
-            new sfn.Succeed(scope, 'InstanceStatusChangeSucceed'),
+            prepareTopicValue,
           )
           .when(
             // start & starting/configuring-enhanced-monitoring/backing-up or stop modifying/stopping
@@ -164,6 +252,7 @@ export class RunningControlStateMachine extends sfn.StateMachine {
           parameters: {
             TargetResource: sfn.JsonPath.stringAt('$$.Map.Item.Value'),
             Params: sfn.JsonPath.stringAt('$.Params'),
+            definition: sfn.JsonPath.stringAt('$.definition'),
             // definition: sfn.JsonPath.stringAt('$.definition'),
           },
           maxConcurrency: 10,
@@ -176,20 +265,17 @@ export class RunningControlStateMachine extends sfn.StateMachine {
             },
           }).next(describeInstance));
 
-        const targetResourcesNotFound = new sfn.Pass(scope, 'TargetResourcesNotFound');
-        targetResourcesNotFound.next(succeed);
-
         const targetResourcesExistCheck = new sfn.Choice(scope, 'TargetResourcesExistCheck')
           .when(
             sfn.Condition.numberGreaterThan('$.TargetResourceLength.Length', 0),
             //sfn.Condition.numberGreaterThan(sfn.JsonPath.arrayLength('$.Result.TargetResources'), 0),
             resourceStatusChangingMap,
           )
-          .otherwise(targetResourcesNotFound);
+          .otherwise(new sfn.Succeed(scope, 'TargetResourcesNotFound'));
 
         getTargetLength.next(targetResourcesExistCheck);
 
-        return sfn.DefinitionBody.fromChainable(getTargetResources);
+        return sfn.DefinitionBody.fromChainable(initStateListDefinition);
       })(),
     });
   }

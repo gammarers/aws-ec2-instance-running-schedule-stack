@@ -1,9 +1,15 @@
 import { Stack } from 'aws-cdk-lib';
 import * as iam from 'aws-cdk-lib/aws-iam';
+import * as logs from 'aws-cdk-lib/aws-logs';
 import * as scheduler from 'aws-cdk-lib/aws-scheduler';
 import * as sns from 'aws-cdk-lib/aws-sns';
+import { LogLevel as EC2InstanceRunningScheduleStackMachineLogLevel } from 'aws-cdk-lib/aws-stepfunctions';
 import { Construct } from 'constructs';
 import { RunningControlStateMachine } from './resources/running-control-state-machine';
+
+export {
+  EC2InstanceRunningScheduleStackMachineLogLevel,
+};
 
 export interface TargetResource {
   readonly tagKey: string;
@@ -22,11 +28,16 @@ export interface Notifications {
   // readonly slack?: Slack;
 }
 
+export interface LogOption {
+  readonly machineLogLevel?: EC2InstanceRunningScheduleStackMachineLogLevel;
+}
+
 export interface EC2InstanceRunningScheduleStackProps {
   readonly targetResource: TargetResource;
   readonly stopSchedule?: Schedule;
   readonly startSchedule?: Schedule;
   readonly notifications?: Notifications;
+  readonly logOption?: LogOption;
 }
 
 export class EC2InstanceRunningScheduleStack extends Stack {
@@ -51,6 +62,22 @@ export class EC2InstanceRunningScheduleStack extends Stack {
     const machine = new RunningControlStateMachine(this, 'StateMachine', {
       stateMachineName: undefined,
       notificationTopic: topic,
+      logs: (() => {
+        if (props.logOption?.machineLogLevel) {
+          return {
+            destination: new logs.LogGroup(this, 'StateMachineLogGroup', {
+              logGroupName: (() => {
+                // if (names.stateMachineName) {
+                //   return `/aws/states/${names.stateMachineName}`;
+                // }
+                return undefined;
+              })(),
+            }),
+            level: props.logOption.machineLogLevel,
+          };
+        }
+        return undefined;
+      })(),
     });
 
     // 👇 EventBridge Scheduler IAM Role

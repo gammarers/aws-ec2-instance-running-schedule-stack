@@ -223,6 +223,21 @@ exports[`Ec2InstanceRunningScheduleStack specific Testing Should match snapshot:
             ],
           ],
         },
+        "LoggingConfiguration": {
+          "Destinations": [
+            {
+              "CloudWatchLogsLogGroup": {
+                "LogGroupArn": {
+                  "Fn::GetAtt": [
+                    "StateMachineLogGroup15B91BCB",
+                    "Arn",
+                  ],
+                },
+              },
+            },
+          ],
+          "Level": "ALL",
+        },
         "RoleArn": {
           "Fn::GetAtt": [
             "StateMachineRoleB840431D",
@@ -232,6 +247,14 @@ exports[`Ec2InstanceRunningScheduleStack specific Testing Should match snapshot:
       },
       "Type": "AWS::StepFunctions::StateMachine",
       "UpdateReplacePolicy": "Delete",
+    },
+    "StateMachineLogGroup15B91BCB": {
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "RetentionInDays": 731,
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
     },
     "StateMachineRoleB840431D": {
       "Properties": {
@@ -262,6 +285,20 @@ exports[`Ec2InstanceRunningScheduleStack specific Testing Should match snapshot:
       "Properties": {
         "PolicyDocument": {
           "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogDelivery",
+                "logs:GetLogDelivery",
+                "logs:UpdateLogDelivery",
+                "logs:DeleteLogDelivery",
+                "logs:ListLogDeliveries",
+                "logs:PutResourcePolicy",
+                "logs:DescribeResourcePolicies",
+                "logs:DescribeLogGroups",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
             {
               "Action": "tag:GetResources",
               "Effect": "Allow",

@@ -898,6 +898,7 @@ const eC2InstanceRunningScheduleStackProps: EC2InstanceRunningScheduleStackProps
 | <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStackProps.property.notifications">notifications</a></code> | <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.Notifications">Notifications</a></code> | *No description.* |
 | <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStackProps.property.startSchedule">startSchedule</a></code> | <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.Schedule">Schedule</a></code> | *No description.* |
 | <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStackProps.property.stopSchedule">stopSchedule</a></code> | <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.Schedule">Schedule</a></code> | *No description.* |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStackProps.property.timeout">timeout</a></code> | <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.Timeout">Timeout</a></code> | *No description.* |
 
 ---
 
@@ -948,6 +949,16 @@ public readonly stopSchedule: Schedule;
 ```
 
 - *Type:* <a href="#@gammarers/aws-ec2-instance-running-schedule-stack.Schedule">Schedule</a>
+
+---
+
+##### `timeout`<sup>Optional</sup> <a name="timeout" id="@gammarers/aws-ec2-instance-running-schedule-stack.EC2InstanceRunningScheduleStackProps.property.timeout"></a>
+
+```typescript
+public readonly timeout: Timeout;
+```
+
+- *Type:* <a href="#@gammarers/aws-ec2-instance-running-schedule-stack.Timeout">Timeout</a>
 
 ---
 
@@ -1104,6 +1115,34 @@ public readonly tagValues: string[];
 ```
 
 - *Type:* string[]
+
+---
+
+### Timeout <a name="Timeout" id="@gammarers/aws-ec2-instance-running-schedule-stack.Timeout"></a>
+
+#### Initializer <a name="Initializer" id="@gammarers/aws-ec2-instance-running-schedule-stack.Timeout.Initializer"></a>
+
+```typescript
+import { Timeout } from '@gammarers/aws-ec2-instance-running-schedule-stack'
+
+const timeout: Timeout = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#@gammarers/aws-ec2-instance-running-schedule-stack.Timeout.property.stateMachineTimeout">stateMachineTimeout</a></code> | <code>aws-cdk-lib.Duration</code> | *No description.* |
+
+---
+
+##### `stateMachineTimeout`<sup>Optional</sup> <a name="stateMachineTimeout" id="@gammarers/aws-ec2-instance-running-schedule-stack.Timeout.property.stateMachineTimeout"></a>
+
+```typescript
+public readonly stateMachineTimeout: Duration;
+```
+
+- *Type:* aws-cdk-lib.Duration
 
 ---
 

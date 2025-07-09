@@ -219,7 +219,7 @@ exports[`Ec2InstanceRunningScheduleStack specific Testing Should match snapshot:
               {
                 "Ref": "NotificationTopicEB7A0DF1",
               },
-              "","Message":{"default.$":"$.Generate.Topic.TextMessage","email.$":"$.Generate.Topic.TextMessage"},"MessageStructure":"json","Subject.$":"$.Generate.Topic.Subject"}},"InstanceStatusChangeSucceed":{"Type":"Succeed"}}},"MaxConcurrency":10}}}",
+              "","Message":{"default.$":"$.Generate.Topic.TextMessage","email.$":"$.Generate.Topic.TextMessage"},"MessageStructure":"json","Subject.$":"$.Generate.Topic.Subject"}},"InstanceStatusChangeSucceed":{"Type":"Succeed"}}},"MaxConcurrency":10}},"TimeoutSeconds":1800}",
             ],
           ],
         },

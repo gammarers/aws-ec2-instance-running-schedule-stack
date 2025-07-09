@@ -1,4 +1,4 @@
-import { Stack } from 'aws-cdk-lib';
+import { Duration, Stack } from 'aws-cdk-lib';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as logs from 'aws-cdk-lib/aws-logs';
 import * as scheduler from 'aws-cdk-lib/aws-scheduler';
@@ -32,12 +32,17 @@ export interface LogOption {
   readonly machineLogLevel?: EC2InstanceRunningScheduleStackMachineLogLevel;
 }
 
+export interface Timeout {
+  readonly stateMachineTimeout?: Duration;
+}
+
 export interface EC2InstanceRunningScheduleStackProps {
   readonly targetResource: TargetResource;
   readonly stopSchedule?: Schedule;
   readonly startSchedule?: Schedule;
   readonly notifications?: Notifications;
   readonly logOption?: LogOption;
+  readonly timeout?: Timeout;
 }
 
 export class EC2InstanceRunningScheduleStack extends Stack {
@@ -62,6 +67,12 @@ export class EC2InstanceRunningScheduleStack extends Stack {
     const machine = new RunningControlStateMachine(this, 'StateMachine', {
       stateMachineName: undefined,
       notificationTopic: topic,
+      timeout: (() => {
+        if (props.timeout?.stateMachineTimeout) {
+          return props.timeout?.stateMachineTimeout;
+        }
+        return Duration.hours(1);
+      })(),
       logs: (() => {
         if (props.logOption?.machineLogLevel) {
           return {

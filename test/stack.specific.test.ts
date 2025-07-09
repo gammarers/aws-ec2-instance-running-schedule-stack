@@ -1,4 +1,4 @@
-import { App } from 'aws-cdk-lib';
+import { App, Duration } from 'aws-cdk-lib';
 import { Template } from 'aws-cdk-lib/assertions';
 import { EC2InstanceRunningScheduleStack, EC2InstanceRunningScheduleStackMachineLogLevel } from '../src';
 
@@ -28,6 +28,9 @@ describe('Ec2InstanceRunningScheduleStack specific Testing', () => {
         'foo@example.com',
         'bar@example.net',
       ],
+    },
+    timeout: {
+      stateMachineTimeout: Duration.minutes(30),
     },
     logOption: {
       machineLogLevel: EC2InstanceRunningScheduleStackMachineLogLevel.ALL,

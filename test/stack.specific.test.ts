@@ -7,6 +7,7 @@ describe('Ec2InstanceRunningScheduleStack specific Testing', () => {
   const app = new App();
 
   const stack = new EC2InstanceRunningScheduleStack(app, 'EC2InstanceRunningScheduleStack', {
+    enabled: true,
     targetResource: {
       tagKey: 'WorkHoursRunning',
       tagValues: ['YES'],

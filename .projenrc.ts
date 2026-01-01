@@ -3,9 +3,9 @@ const project = new awscdk.AwsCdkConstructLibrary({
   author: 'yicr',
   authorAddress: 'yicr@users.noreply.github.com',
   authorOrganization: true,
-  cdkVersion: '2.120.0',
-  typescriptVersion: '5.8.x',
-  jsiiVersion: '5.8.x',
+  cdkVersion: '2.189.1',
+  typescriptVersion: '5.9.x',
+  jsiiVersion: '5.9.x',
   defaultReleaseBranch: 'main',
   name: '@gammarers/aws-ec2-instance-running-schedule-stack',
   description: 'AWS EC2 Instance Running Scheduler',
@@ -16,7 +16,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   npmAccess: javascript.NpmAccess.PUBLIC,
   majorVersion: 2,
   minNodeVersion: '16.0.0',
-  workflowNodeVersion: '22.x',
+  workflowNodeVersion: '24.x',
   depsUpgradeOptions: {
     workflowOptions: {
       labels: ['auto-approve', 'auto-merge'],

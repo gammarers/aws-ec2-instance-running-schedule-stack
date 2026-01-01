@@ -55,7 +55,7 @@ exports[`Ec2InstanceRunningScheduleStack default Testing Should match snapshot: 
         },
         "ScheduleExpression": "cron(50 7 ? * MON-FRI *)",
         "ScheduleExpressionTimezone": "UTC",
-        "State": "ENABLED",
+        "State": "DISABLED",
         "Target": {
           "Arn": {
             "Ref": "StateMachine2E01A3A5",
@@ -192,7 +192,7 @@ exports[`Ec2InstanceRunningScheduleStack default Testing Should match snapshot: 
         },
         "ScheduleExpression": "cron(10 21 ? * MON-FRI *)",
         "ScheduleExpressionTimezone": "UTC",
-        "State": "ENABLED",
+        "State": "DISABLED",
         "Target": {
           "Arn": {
             "Ref": "StateMachine2E01A3A5",

@@ -38,6 +38,8 @@ export interface Timeout {
 
 export interface EC2InstanceRunningScheduleStackProps {
   readonly targetResource: TargetResource;
+  readonly enabled?: boolean;
+  // todo: schedule {start/stop}
   readonly stopSchedule?: Schedule;
   readonly startSchedule?: Schedule;
   readonly notifications?: Notifications;
@@ -112,6 +114,11 @@ export class EC2InstanceRunningScheduleStack extends Stack {
       },
     });
 
+    // 👇 Rule state
+    const enableRule: boolean = (() => {
+      return props?.enabled === undefined || props.enabled;
+    })();
+
     // 👇 Stop Schedule expression
     const stopScheduleExpression: string = (() => {
       // default: weekday 21:10
@@ -133,8 +140,8 @@ export class EC2InstanceRunningScheduleStack extends Stack {
     // 👇 Stop EC2 instance schedule
     new InstanceRuningSchedule(this, 'StopDatabaseRunningSchedule', {
       name: undefined,
+      enabled: enableRule,
       description: 'stop database(instance/cluster) running stop schedule.',
-      sheduleState: 'ENABLED',
       timezone: props.stopSchedule?.timezone ?? 'UTC',
       expression: stopScheduleExpression,
       target: {
@@ -151,8 +158,8 @@ export class EC2InstanceRunningScheduleStack extends Stack {
     // 👇 Start EC2 instance schedule
     new InstanceRuningSchedule(this, 'StartDatabaseRunningSchedule', {
       name: undefined,
+      enabled: enableRule,
       description: 'start db instance schedule.',
-      sheduleState: 'ENABLED',
       timezone: props.startSchedule?.timezone ?? 'UTC',
       expression: startScheduleExpression,
       target: {
@@ -170,8 +177,8 @@ export class EC2InstanceRunningScheduleStack extends Stack {
 
 interface InstanceRuningScheduleProps {
   name?: string;
+  enabled: boolean;
   description: string;
-  sheduleState: string;
   timezone: string;
   expression: string;
   target: {
@@ -191,8 +198,8 @@ class InstanceRuningSchedule extends scheduler.CfnSchedule {
   constructor(scope: Construct, id: string, props: InstanceRuningScheduleProps) {
     super(scope, id, {
       name: props.name,
+      state: props.enabled ? 'ENABLED' : 'DISABLED',
       description: props.description,
-      state: props.sheduleState,
       //groupName: scheduleGroup.name, // default
       flexibleTimeWindow: {
         mode: 'OFF',

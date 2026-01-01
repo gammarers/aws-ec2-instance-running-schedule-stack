@@ -249,7 +249,7 @@ export class RunningControlStateMachine extends sfn.StateMachine {
 
         const resourceStatusChangingMap = new sfn.Map(scope, 'ResourceProcessingMap', {
           itemsPath: sfn.JsonPath.stringAt('$.Result.TargetResources'),
-          parameters: {
+          itemSelector: {
             TargetResource: sfn.JsonPath.stringAt('$$.Map.Item.Value'),
             Params: sfn.JsonPath.stringAt('$.Params'),
             definition: sfn.JsonPath.stringAt('$.definition'),

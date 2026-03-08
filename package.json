@@ -1,6 +1,6 @@
 {
   "name": "aws-ec2-instance-running-scheduler",
-  "description": "AWS EC2 Instance Running Scheduler",
+  "description": "AWS CDK construct to run EC2 instances on a schedule (start/stop within working hours) using EventBridge Scheduler and a Durable Lambda.",
   "repository": {
     "type": "git",
     "url": "https://github.com/gammarers-aws-cdk-constructs/aws-ec2-instance-running-scheduler.git"

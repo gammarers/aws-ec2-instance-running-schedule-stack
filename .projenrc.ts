@@ -8,7 +8,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   jsiiVersion: '5.9.x',
   defaultReleaseBranch: 'main',
   name: 'aws-ec2-instance-running-scheduler',
-  description: 'AWS EC2 Instance Running Scheduler',
+  description: 'AWS CDK construct to run EC2 instances on a schedule (start/stop within working hours) using EventBridge Scheduler and a Durable Lambda.',
   keywords: ['aws', 'cdk', 'aws-cdk', 'auto', 'running', 'scheduler', 'ec2', 'instance'],
   projenrcTs: true,
   repositoryUrl: 'https://github.com/gammarers-aws-cdk-constructs/aws-ec2-instance-running-scheduler.git',
@@ -22,7 +22,8 @@ const project = new awscdk.AwsCdkConstructLibrary({
     'aws-sdk-client-mock@^2',
     'aws-sdk-client-mock-jest@^2',
   ],
-  mergify: false,
+  mergify: true,
+  npmTrustedPublishing: true,
   releaseToNpm: true,
   npmAccess: javascript.NpmAccess.PUBLIC,
   majorVersion: 3,
@@ -57,4 +58,5 @@ const project = new awscdk.AwsCdkConstructLibrary({
   //   packageId: 'Gammarers.CDK.AWS.EC2InstanceRunningScheduleStack',
   // },
 });
+project.addPackageIgnore('/.devcontainer/');
 project.synth();

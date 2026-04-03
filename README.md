@@ -7,16 +7,18 @@
 
 [![View on Construct Hub](https://constructs.dev/badge?package=aws-ec2-instance-running-scheduler)](https://constructs.dev/packages/aws-ec2-instance-running-scheduler)
 
-AWS CDK construct to run EC2 instances on a schedule (start/stop within working hours) using EventBridge Scheduler and a Durable Lambda.
+AWS CDK construct that starts and stops EC2 instances on a cron schedule using **EventBridge Scheduler** and a **Durable Execution Lambda**. The handler discovers instances with the **Resource Groups Tagging API**, runs start/stop and **polls until the instance reaches the target state** (durable `step` / `wait`), processes **multiple instances in parallel** (bounded concurrency), and posts **Slack** summary and per-instance thread messages using a secret from **Secrets Manager**.
 
 ## Features
 
-- **Tag-based targeting** – Select EC2 instances by tag key and values (e.g. `Schedule` / `YES`).
-- **EventBridge Scheduler** – Cron-based start and stop schedules with timezone support.
-- **Durable Lambda** – Single Lambda with AWS Lambda Durable Execution for reliable, long-running start/stop and polling (no Step Functions).
-- **Slack notifications** – Optional Slack messages for run results via Secrets Manager.
-- **Scheduling toggle** – Enable or disable scheduling without removing the stack (`enableScheduling`).
-- **Configurable schedules** – Separate cron settings for start and stop (minute, hour, week day, timezone).
+- **Tag-based targeting** – Select EC2 instances by tag key and values (e.g. `Schedule` / `YES`) via `tag:GetResources`.
+- **EventBridge Scheduler** – Separate cron rules for start and stop, with per-rule timezone (`aws-cdk-lib` `TimeZone`).
+- **Durable Lambda** – One Lambda with AWS Lambda Durable Execution (`step`, `wait`, `map`, child contexts per instance) for long-running workflows without Step Functions.
+- **Stable-state polling** – After start/stop, the function waits and re-describes instances until `running` (start mode) or `stopped` (stop mode), or until a terminal error.
+- **Slack notifications** – Required for a successful run: parent message plus threaded updates per instance; credentials come from Secrets Manager (`token` and `channel` JSON).
+- **Scheduling toggle** – Enable or disable both schedules without removing the stack (`enableScheduling`).
+- **Configurable schedules** – Optional cron overrides for start and stop (`minute`, `hour`, `week`, `timezone`); sensible defaults if omitted.
+- **IAM and observability** – EC2 and tagging API permissions, Slack secret read grant, JSON logging, and a dedicated log group (construct defaults).
 
 ## Installation
 
@@ -32,9 +34,15 @@ npm install aws-ec2-instance-running-scheduler
 yarn add aws-ec2-instance-running-scheduler
 ```
 
+**pnpm**
+
+```bash
+pnpm add aws-ec2-instance-running-scheduler
+```
+
 ## Usage
 
-Use the **Construct** `EC2InstanceRunningScheduler` when adding the scheduler into an existing Stack or any CDK scope.
+Use the **construct** `EC2InstanceRunningScheduler` when embedding the scheduler in an existing stack or other CDK scope.
 
 ```typescript
 import * as cdk from 'aws-cdk-lib';
@@ -68,7 +76,7 @@ new EC2InstanceRunningScheduler(stack, 'EC2InstanceRunningScheduler', {
 });
 ```
 
-Use the **Stack** `EC2InstanceRunningScheduleStack` when deploying the scheduler as a standalone stack.
+Use the **stack** `EC2InstanceRunningScheduleStack` when deploying the scheduler as its own stack. It accepts the **same scheduler options** as the construct (plus standard `StackProps` such as `env`).
 
 ```typescript
 import * as cdk from 'aws-cdk-lib';
@@ -101,38 +109,41 @@ new EC2InstanceRunningScheduleStack(app, 'EC2InstanceRunningScheduleStack', {
 });
 ```
 
+EventBridge Scheduler invokes the Lambda with `Params.TagKey`, `Params.TagValues`, and `Params.Mode` (`Start` or `Stop`); the construct wires this for you.
+
 ## Options
+
+These options apply to **`EC2InstanceRunningScheduler`** and to **`EC2InstanceRunningScheduleStack`** (stack props include them alongside `StackProps`).
 
 | Option | Type | Required | Description |
 |--------|------|----------|-------------|
-| `targetResource` | `TargetResource` | Yes | Tag key and values to select EC2 instances. |
-| `secrets` | `Secrets` | Yes | Slack secret name in AWS Secrets Manager. |
-| `startSchedule` | `Schedule` | No | Cron for starting instances (default: 07:50 MON–FRI UTC). |
-| `stopSchedule` | `Schedule` | No | Cron for stopping instances (default: 19:05 MON–FRI UTC). |
-| `enableScheduling` | `boolean` | No | Whether schedules are enabled (default: `true`). |
+| `targetResource` | `TargetResource` | Yes | Tag key and values used to select EC2 instances. |
+| `secrets` | `Secrets` | Yes | Identifies the Secrets Manager secret used for Slack (`slackSecretName`). |
+| `startSchedule` | `Schedule` | No | Cron for starting instances (default: `50 7 ? * MON-FRI *` in `Etc/UTC`). |
+| `stopSchedule` | `Schedule` | No | Cron for stopping instances (default: `5 19 ? * MON-FRI *` in `Etc/UTC`). |
+| `enableScheduling` | `boolean` | No | Whether both scheduler rules are enabled (default: `true`). |
 
 ### TargetResource
 
 - `tagKey` – Tag key used to select instances (e.g. `Schedule`).
-- `tagValues` – Tag values that match instances to include (e.g. `['YES']`).
+- `tagValues` – Tag values that must match (e.g. `['YES']`).
 
 ### Schedule
 
 - `timezone` – `TimeZone` from `aws-cdk-lib` (e.g. `TimeZone.ASIA_TOKYO`, `TimeZone.ETC_UTC`).
-- `minute` – Cron minute (0–59).
-- `hour` – Cron hour (0–23).
-- `week` – Cron day of week (e.g. `MON-FRI`).
+- `minute` – Cron minute (`0`–`59`).
+- `hour` – Cron hour (`0`–`23`).
+- `week` – Cron day-of-week field (e.g. `MON-FRI`).
 
 ### Secrets
 
-- `slackSecretName` – Name of the Secrets Manager secret containing Slack `token` and `channel` (JSON).
+- `slackSecretName` – Name of the AWS Secrets Manager secret. The Lambda expects JSON with **`token`** (Slack bot token) and **`channel`** (channel ID or name for `chat.postMessage`).
 
 ## Requirements
 
-- **Node.js** ≥ 20.0.0
-- **AWS CDK** ^2.232.0
-- **constructs** ^10.5.1
-- **AWS** – EventBridge Scheduler, Lambda (Durable Execution), EC2, Resource Groups Tagging API, Secrets Manager
+- **Node.js** ≥ 20.0.0 (for developing or synthesizing CDK apps that depend on this package).
+- **aws-cdk-lib** ^2.232.0 and **constructs** ^10.5.1 (peer dependencies).
+- **AWS** – EventBridge Scheduler; Lambda with **Durable Execution** and a **live alias**; EC2 (describe/start/stop); Resource Groups Tagging API; Secrets Manager. The deployed function uses the **latest Node.js runtime** available in the region (as configured by the construct’s Lambda class), **arm64**, and Durable Execution–compatible settings.
 
 ## License
 

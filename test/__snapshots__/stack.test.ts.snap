@@ -92,7 +92,7 @@ exports[`EC2InstanceRunningScheduleStack default (scheduling enabled, default sc
           },
           "S3Key": "a7f53db6b84743d8991cb52e549be6615548b15a04708588085d44d678f5c86d.zip",
         },
-        "Description": "A function to run the scheduled RDS Database or Cluster.",
+        "Description": "Starts and stops tagged EC2 instances on EventBridge Scheduler schedules.",
         "DurableConfig": {
           "ExecutionTimeout": 7200,
           "RetentionPeriodInDays": 1,
@@ -151,7 +151,7 @@ exports[`EC2InstanceRunningScheduleStack default (scheduling enabled, default sc
         },
         "FunctionVersion": {
           "Fn::GetAtt": [
-            "EC2InstanceRunningSchedulerRunningSchedulerFunctionCurrentVersion11B966014ae95f8efd742d7214eaf5ba74aebda5",
+            "EC2InstanceRunningSchedulerRunningSchedulerFunctionCurrentVersion11B9660159367aacf27f873d4c4e15da2d14ebef",
             "Version",
           ],
         },
@@ -159,7 +159,7 @@ exports[`EC2InstanceRunningScheduleStack default (scheduling enabled, default sc
       },
       "Type": "AWS::Lambda::Alias",
     },
-    "EC2InstanceRunningSchedulerRunningSchedulerFunctionCurrentVersion11B966014ae95f8efd742d7214eaf5ba74aebda5": {
+    "EC2InstanceRunningSchedulerRunningSchedulerFunctionCurrentVersion11B9660159367aacf27f873d4c4e15da2d14ebef": {
       "Metadata": {
         "aws:cdk:do-not-refactor": true,
       },
@@ -202,7 +202,7 @@ exports[`EC2InstanceRunningScheduleStack default (scheduling enabled, default sc
           ],
           "Version": "2012-10-17",
         },
-        "Description": "A role to control the RDS Database or Cluster.",
+        "Description": "Allows the running scheduler to describe, start, and stop EC2 instances and read Slack secrets.",
         "ManagedPolicyArns": [
           {
             "Fn::Join": [
@@ -250,7 +250,7 @@ exports[`EC2InstanceRunningScheduleStack default (scheduling enabled, default sc
               ],
               "Effect": "Allow",
               "Resource": "*",
-              "Sid": "RdsRunningControl",
+              "Sid": "Ec2RunningControl",
             },
             {
               "Action": [
@@ -537,7 +537,7 @@ exports[`EC2InstanceRunningScheduleStack disable (enableScheduling: false) Shoul
           },
           "S3Key": "a7f53db6b84743d8991cb52e549be6615548b15a04708588085d44d678f5c86d.zip",
         },
-        "Description": "A function to run the scheduled RDS Database or Cluster.",
+        "Description": "Starts and stops tagged EC2 instances on EventBridge Scheduler schedules.",
         "DurableConfig": {
           "ExecutionTimeout": 7200,
           "RetentionPeriodInDays": 1,
@@ -596,7 +596,7 @@ exports[`EC2InstanceRunningScheduleStack disable (enableScheduling: false) Shoul
         },
         "FunctionVersion": {
           "Fn::GetAtt": [
-            "EC2InstanceRunningSchedulerRunningSchedulerFunctionCurrentVersion11B966014ae95f8efd742d7214eaf5ba74aebda5",
+            "EC2InstanceRunningSchedulerRunningSchedulerFunctionCurrentVersion11B9660159367aacf27f873d4c4e15da2d14ebef",
             "Version",
           ],
         },
@@ -604,7 +604,7 @@ exports[`EC2InstanceRunningScheduleStack disable (enableScheduling: false) Shoul
       },
       "Type": "AWS::Lambda::Alias",
     },
-    "EC2InstanceRunningSchedulerRunningSchedulerFunctionCurrentVersion11B966014ae95f8efd742d7214eaf5ba74aebda5": {
+    "EC2InstanceRunningSchedulerRunningSchedulerFunctionCurrentVersion11B9660159367aacf27f873d4c4e15da2d14ebef": {
       "Metadata": {
         "aws:cdk:do-not-refactor": true,
       },
@@ -647,7 +647,7 @@ exports[`EC2InstanceRunningScheduleStack disable (enableScheduling: false) Shoul
           ],
           "Version": "2012-10-17",
         },
-        "Description": "A role to control the RDS Database or Cluster.",
+        "Description": "Allows the running scheduler to describe, start, and stop EC2 instances and read Slack secrets.",
         "ManagedPolicyArns": [
           {
             "Fn::Join": [
@@ -695,7 +695,7 @@ exports[`EC2InstanceRunningScheduleStack disable (enableScheduling: false) Shoul
               ],
               "Effect": "Allow",
               "Resource": "*",
-              "Sid": "RdsRunningControl",
+              "Sid": "Ec2RunningControl",
             },
             {
               "Action": [
@@ -982,7 +982,7 @@ exports[`EC2InstanceRunningScheduleStack specific (custom schedule and timezone)
           },
           "S3Key": "a7f53db6b84743d8991cb52e549be6615548b15a04708588085d44d678f5c86d.zip",
         },
-        "Description": "A function to run the scheduled RDS Database or Cluster.",
+        "Description": "Starts and stops tagged EC2 instances on EventBridge Scheduler schedules.",
         "DurableConfig": {
           "ExecutionTimeout": 7200,
           "RetentionPeriodInDays": 1,
@@ -1041,7 +1041,7 @@ exports[`EC2InstanceRunningScheduleStack specific (custom schedule and timezone)
         },
         "FunctionVersion": {
           "Fn::GetAtt": [
-            "EC2InstanceRunningSchedulerRunningSchedulerFunctionCurrentVersion11B966014ae95f8efd742d7214eaf5ba74aebda5",
+            "EC2InstanceRunningSchedulerRunningSchedulerFunctionCurrentVersion11B9660159367aacf27f873d4c4e15da2d14ebef",
             "Version",
           ],
         },
@@ -1049,7 +1049,7 @@ exports[`EC2InstanceRunningScheduleStack specific (custom schedule and timezone)
       },
       "Type": "AWS::Lambda::Alias",
     },
-    "EC2InstanceRunningSchedulerRunningSchedulerFunctionCurrentVersion11B966014ae95f8efd742d7214eaf5ba74aebda5": {
+    "EC2InstanceRunningSchedulerRunningSchedulerFunctionCurrentVersion11B9660159367aacf27f873d4c4e15da2d14ebef": {
       "Metadata": {
         "aws:cdk:do-not-refactor": true,
       },
@@ -1092,7 +1092,7 @@ exports[`EC2InstanceRunningScheduleStack specific (custom schedule and timezone)
           ],
           "Version": "2012-10-17",
         },
-        "Description": "A role to control the RDS Database or Cluster.",
+        "Description": "Allows the running scheduler to describe, start, and stop EC2 instances and read Slack secrets.",
         "ManagedPolicyArns": [
           {
             "Fn::Join": [
@@ -1140,7 +1140,7 @@ exports[`EC2InstanceRunningScheduleStack specific (custom schedule and timezone)
               ],
               "Effect": "Allow",
               "Resource": "*",
-              "Sid": "RdsRunningControl",
+              "Sid": "Ec2RunningControl",
             },
             {
               "Action": [

@@ -75,7 +75,7 @@ export class EC2InstanceRunningScheduler extends Construct {
     // Durable Functions-based Running Scheduler (previous Step Functions logic implemented in Lambda).
     // Durable Execution requires Node.js 22+.
     const runningScheduleFunction = new RunningSchedulerFunction(this, 'RunningSchedulerFunction', {
-      description: 'A function to run the scheduled RDS Database or Cluster.',
+      description: 'Starts and stops tagged EC2 instances on EventBridge Scheduler schedules.',
       architecture: lambda.Architecture.ARM_64,
       timeout: Duration.minutes(15),
       memorySize: 512,
@@ -92,7 +92,7 @@ export class EC2InstanceRunningScheduler extends Construct {
         logLevel: lambda.ParamsAndSecretsLogLevel.INFO,
       }),
       role: new iam.Role(this, 'RunningSchedulerFunctionRole', {
-        description: 'A role to control the RDS Database or Cluster.',
+        description: 'Allows the running scheduler to describe, start, and stop EC2 instances and read Slack secrets.',
         assumedBy: new iam.ServicePrincipal('lambda.amazonaws.com'),
         managedPolicies: [
           iam.ManagedPolicy.fromAwsManagedPolicyName('service-role/AWSLambdaBasicExecutionRole'),
@@ -115,9 +115,9 @@ export class EC2InstanceRunningScheduler extends Construct {
       ],
       resources: ['*'],
     }));
-    // Grant read access to the RDS API
+    // EC2: describe instances and start/stop by instance id
     runningScheduleFunction.addToRolePolicy(new iam.PolicyStatement({
-      sid: 'RdsRunningControl',
+      sid: 'Ec2RunningControl',
       effect: iam.Effect.ALLOW,
       actions: [
         'ec2:DescribeInstances',

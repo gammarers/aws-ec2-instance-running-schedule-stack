@@ -17,6 +17,7 @@ import {
 import { GetResourcesCommand, ResourceGroupsTaggingAPIClient } from '@aws-sdk/client-resource-groups-tagging-api';
 import { WebClient } from '@slack/web-api';
 import { secretFetcher } from 'aws-lambda-secret-fetcher';
+import { isDesiredStableState } from './running-scheduler-predicates';
 
 /** Mapping of EC2 instance state to display name and emoji for Slack. */
 const STATE_LIST = [
@@ -57,16 +58,6 @@ const getStateDisplay = (current: string): { emoji: string; name: string } | und
   const found = STATE_LIST.find((s) => s.state === current);
   return found ? { emoji: found.emoji, name: found.name } : undefined;
 };
-
-/**
- * Whether the instance is already in the goal state for the scheduler mode (no start/stop needed).
- *
- * @param mode - `Start` expects `running`; `Stop` expects `stopped`.
- * @param currentState - Instance state from `DescribeInstances` (e.g. `running`, `pending`).
- * @returns `true` when the instance matches the target state for `mode`.
- */
-const isDesiredStableState = (mode: SchedulerEvent['Params']['Mode'], currentState: string) =>
-  (mode === 'Start' && currentState === 'running') || (mode === 'Stop' && currentState === 'stopped');
 
 /**
  * Processes one EC2 instance: describes state, issues start/stop when needed, then polls until

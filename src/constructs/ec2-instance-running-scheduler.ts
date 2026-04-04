@@ -57,15 +57,18 @@ export interface EC2InstanceRunningSchedulerProps {
 }
 
 /**
- * Construct that schedules EC2 instance start/stop via EventBridge Scheduler and a Durable Lambda.
+ * Provisions EventBridge Scheduler rules and a Durable Execution Lambda that start/stop tagged EC2 instances.
+ *
+ * Each schedule invokes the function with `Params` (`TagKey`, `TagValues`, `Mode`). The function uses
+ * the Resource Groups Tagging API and EC2 APIs; Slack notifications use the secret named in {@link Secrets.slackSecretName}.
  */
 export class EC2InstanceRunningScheduler extends Construct {
   /**
-   * Creates an EC2 instance running scheduler with start/stop schedules and a Durable Lambda.
+   * Defines IAM, logging, two cron schedules (start/stop), and the bundled running-scheduler Lambda (Node.js, Durable Execution).
    *
    * @param scope - Parent construct.
    * @param id - Construct id.
-   * @param props - Scheduler configuration (target resource, schedules, secrets).
+   * @param props - Target tags, optional cron overrides, Slack secret name, and schedule enable flag.
    */
   constructor(scope: Construct, id: string, props: EC2InstanceRunningSchedulerProps) {
     super(scope, id);

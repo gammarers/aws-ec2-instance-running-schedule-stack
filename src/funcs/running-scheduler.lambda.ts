@@ -17,6 +17,7 @@ import {
 import { GetResourcesCommand, ResourceGroupsTaggingAPIClient } from '@aws-sdk/client-resource-groups-tagging-api';
 import { WebClient } from '@slack/web-api';
 import { secretFetcher } from 'aws-lambda-secret-fetcher';
+import { isDesiredStableState } from './running-scheduler-predicates';
 
 /** Mapping of EC2 instance state to display name and emoji for Slack. */
 const STATE_LIST = [
@@ -39,9 +40,11 @@ export interface SchedulerEvent {
   };
 }
 
-/** Shape of the Slack secret stored in Secrets Manager. */
+/** Slack credentials and default channel loaded from Secrets Manager (`SLACK_SECRET_NAME`). */
 interface SlackSecret {
+  /** Slack bot token for the Slack `WebClient`. */
   token: string;
+  /** Channel ID or name passed to `chat.postMessage`. */
   channel: string;
 }
 
@@ -57,13 +60,15 @@ const getStateDisplay = (current: string): { emoji: string; name: string } | und
 };
 
 /**
- * Processes a single EC2 instance: describes state, starts or stops as needed, and polls until stable.
+ * Processes one EC2 instance: describes state, issues start/stop when needed, then polls until
+ * {@link isDesiredStableState} is satisfied (durable `step` / `wait` between attempts).
  *
- * @param ctx - Durable execution context for steps and wait.
+ * @param ctx - Durable execution context (child context per instance recommended).
  * @param targetResource - EC2 instance ARN.
- * @param params - Scheduler params (TagKey, TagValues, Mode).
- * @param resourceIndex - Index of this resource (used for step names).
- * @returns Resource ARN, final status, account, region, and instance id.
+ * @param params - Scheduler params (`TagKey`, `TagValues`, `Mode`).
+ * @param resourceIndex - Index used in durable step names for this resource.
+ * @returns Final resource ARN, EC2 state name, parsed account, region, and instance id.
+ * @throws {Error} If the state is neither actionable, transitioning, nor the desired stable state.
  */
 const processOneResource = async (
   ctx: DurableContext,
@@ -79,8 +84,9 @@ const processOneResource = async (
   const stepPrefix = `resource-${resourceIndex}-${identifier}`;
 
   let loopCount = 0;
-  for (;;) {
-    const currentState = await ctx.step(`${stepPrefix}-describe-${loopCount}`, async () => {
+  let currentState = '';
+  do {
+    currentState = await ctx.step(`${stepPrefix}-describe-${loopCount}`, async () => {
       const ec2 = new EC2Client({});
       const out = await ec2.send(new DescribeInstancesCommand({ InstanceIds: [identifier] }));
       return out.Reservations?.[0]?.Instances?.[0]?.State?.Name ?? 'unknown';
@@ -98,7 +104,7 @@ const processOneResource = async (
       continue;
     }
 
-    if (mode === 'Stop' && (currentState === 'running')) {
+    if (mode === 'Stop' && currentState === 'running') {
       await ctx.step(`${stepPrefix}-stop-${loopCount}`, async () => {
         const ec2 = new EC2Client({});
         await ec2.send(new StopInstancesCommand({ InstanceIds: [identifier] }));
@@ -108,40 +114,43 @@ const processOneResource = async (
       continue;
     }
 
-    if (
-      (mode === 'Start' && currentState === 'running') ||
-      (mode === 'Stop' && currentState === 'stopped')
-    ) {
-      return {
-        identifier,
-        account,
-        region,
-        resource: targetResource,
-        status: currentState,
-      };
+    if (!isDesiredStableState(mode, currentState)) {
+      const transitioning =
+        (mode === 'Start' && currentState === 'pending') ||
+        (mode === 'Stop' && (currentState === 'stopping' || currentState === 'shutting-down'));
+
+      if (transitioning) {
+        await ctx.wait({ seconds: STATUS_CHANGE_WAIT_SECONDS });
+        loopCount += 1;
+        continue;
+      }
+
+      throw new Error(`instance status fail: mode=${mode} currentState=${currentState}`);
     }
+  } while (!isDesiredStableState(params.Mode, currentState));
 
-    const transitioning =
-      (mode === 'Start' && currentState === 'pending') ||
-      (mode === 'Stop' && (currentState === 'stopping' || currentState === 'shutting-down'));
-
-    if (transitioning) {
-      await ctx.wait({ seconds: STATUS_CHANGE_WAIT_SECONDS });
-      loopCount += 1;
-      continue;
-    }
-
-    throw new Error(`instance status fail: mode=${mode} currentState=${currentState}`);
-  }
+  return {
+    identifier,
+    account,
+    region,
+    resource: targetResource,
+    status: currentState,
+  };
 };
 
 /**
- * Durable Lambda handler for the EC2 running scheduler.
- * Fetches target resources by tag, starts or stops instances per Mode, and posts results to Slack.
+ * Durable Lambda entry point for the EC2 running scheduler.
  *
- * @param event - SchedulerEvent with Params.TagKey, Params.TagValues, Params.Mode.
- * @param context - Durable execution context.
- * @returns Status and list of processed resources, or TargetResourcesNotFound if none match.
+ * Resolves instances via Resource Groups Tagging API, runs {@link processOneResource} for each ARN
+ * in parallel (bounded concurrency), posts a parent Slack message and per-instance thread replies,
+ * and uses durable `step` / `wait` / `map` so the run can resume across suspensions.
+ *
+ * @param event - Payload from EventBridge Scheduler; must include `Params.TagKey`, `Params.TagValues`, `Params.Mode`.
+ * @param context - Root durable execution context.
+ * @returns
+ * - `{ status: 'TargetResourcesNotFound' }` when no instances match the tag filter.
+ * - `{ status: 'Completed', processed, results }` when instances were handled (`results` entries match {@link processOneResource}).
+ * @throws {Error} If `Params` is invalid, `SLACK_SECRET_NAME` is unset, the Slack secret is incomplete, or instance processing fails.
  */
 export const handler = withDurableExecution(async (event: SchedulerEvent, context: DurableContext) => {
 

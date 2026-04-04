@@ -4,7 +4,10 @@
 
 ### EC2InstanceRunningScheduler <a name="EC2InstanceRunningScheduler" id="aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduler"></a>
 
-Construct that schedules EC2 instance start/stop via EventBridge Scheduler and a Durable Lambda.
+Provisions EventBridge Scheduler rules and a Durable Execution Lambda that start/stop tagged EC2 instances.
+
+Each schedule invokes the function with `Params` (`TagKey`, `TagValues`, `Mode`). The function uses
+the Resource Groups Tagging API and EC2 APIs; Slack notifications use the secret named in {@link Secrets.slackSecretName}.
 
 #### Initializers <a name="Initializers" id="aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduler.Initializer"></a>
 
@@ -18,7 +21,7 @@ new EC2InstanceRunningScheduler(scope: Construct, id: string, props: EC2Instance
 | --- | --- | --- |
 | <code><a href="#aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduler.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | - Parent construct. |
 | <code><a href="#aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduler.Initializer.parameter.id">id</a></code> | <code>string</code> | - Construct id. |
-| <code><a href="#aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduler.Initializer.parameter.props">props</a></code> | <code><a href="#aws-ec2-instance-running-scheduler.EC2InstanceRunningSchedulerProps">EC2InstanceRunningSchedulerProps</a></code> | - Scheduler configuration (target resource, schedules, secrets). |
+| <code><a href="#aws-ec2-instance-running-scheduler.EC2InstanceRunningScheduler.Initializer.parameter.props">props</a></code> | <code><a href="#aws-ec2-instance-running-scheduler.EC2InstanceRunningSchedulerProps">EC2InstanceRunningSchedulerProps</a></code> | - Target tags, optional cron overrides, Slack secret name, and schedule enable flag. |
 
 ---
 
@@ -42,7 +45,7 @@ Construct id.
 
 - *Type:* <a href="#aws-ec2-instance-running-scheduler.EC2InstanceRunningSchedulerProps">EC2InstanceRunningSchedulerProps</a>
 
-Scheduler configuration (target resource, schedules, secrets).
+Target tags, optional cron overrides, Slack secret name, and schedule enable flag.
 
 ---
 
